@@ -1,32 +1,43 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour
-{
-    private Touch touch;
-    private float speedModifier;
+public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Canvas canvas;
+
+    private RectTransform rectTransform;
+    private CanvasGroup canvasGroup;
+
+    private void Awake()
     {
-        speedModifier = 0.01f;
+        rectTransform = GetComponent<RectTransform>();
+        canvasGroup = GetComponent<CanvasGroup>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.touchCount > 0)
-        {
-            touch = Input.GetTouch(0);
-
-            if(touch.phase ==  TouchPhase.Moved)
-            {
-                transform.position = new Vector3(
-                    transform.position.x + touch.deltaPosition.x * speedModifier,
-                    transform.position.y + touch.deltaPosition.y * speedModifier,
-                    transform.position.z);
-            }
-        }
+    public void OnBeginDrag(PointerEventData eventData) {
+        Debug.Log("OnBeginDrag");
+        canvasGroup.alpha = .6f;
+        canvasGroup.blocksRaycasts = false;
     }
+
+    public void OnDrag(PointerEventData eventData)
+    {
+        Debug.Log("OnDrag");
+        rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
+    }
+
+    public void OnEndDrag(PointerEventData eventData)
+    {
+        Debug.Log("OnEndDrag");
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+    }
+
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        Debug.Log("OnPointerDown");
+    }
+
 }
