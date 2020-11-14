@@ -12,9 +12,7 @@ private string nimi1 = "Matti";
 private string nimi2 = "Lotta";
 
 private string tableName = "Pelaaja";
-private string tableName = "Kenttä";
-private string tableName = "Tallennuspiste";
-private string tableName = "Pistemäärä";
+
 
 private string databaseName = "Player.db";
 
@@ -49,7 +47,7 @@ private string databaseName = "Player.db";
 
     void createDataBase(string dbName)
     {
-        string connection = "URI=file:" + Application.dataPath + "/" + dbName + "Player";
+        string connection = "URI=file:" + Application.dataPath + "/" + dbName + "";
         IDbConnection dbcon = new SqliteConnection(connection);
         dbcon.Open();
         dbcon.Close();
@@ -65,7 +63,7 @@ private string databaseName = "Player.db";
         dbcon.Open();
 
         dbcmd = dbcon.CreateCommand();
-        string q_createTable = "CREATE TABLE IF NOT EXISTS "+ Pelaaja + "(id INTEGER PRIMARY KEY, nimi TEXT )";
+        string q_createTable = "CREATE TABLE IF NOT EXISTS "+ tName + "(id INTEGER PRIMARY KEY, nimi TEXT )";
         dbcmd.CommandText = q_createTable;
         reader = dbcmd.ExecuteReader();
 
@@ -74,7 +72,7 @@ private string databaseName = "Player.db";
     }
 	 void printData()
     {
-        string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "Player";
+        string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "";
         IDbConnection dbconn;
         dbconn = (IDbConnection)new SqliteConnection(conn);
         dbconn.Open(); //Open connection to the database.
@@ -87,7 +85,7 @@ private string databaseName = "Player.db";
             int id = reader.GetInt32(0);
             string nickname = reader.GetString(1);
             
-            Debug.Log("Id: " + id + "  Nimi: " + nimi);
+            Debug.Log("Id: " + id + "  Nimi: " + nimi1);
         }
         reader.Close();
         reader = null;
@@ -98,7 +96,7 @@ private string databaseName = "Player.db";
     }
 	    void addData(int id, string nimi)
     {
-        string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "Player";
+        string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "";
         IDbConnection dbconn;
         dbconn = (IDbConnection)new SqliteConnection(conn);
         dbconn.Open(); //Open connection to the database.
@@ -116,7 +114,7 @@ private string databaseName = "Player.db";
 
     void removeData(int id)
     {
-        string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "Player";
+        string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "";
         IDbConnection dbconn;
         dbconn = (IDbConnection)new SqliteConnection(conn);
         dbconn.Open(); //Open connection to the database.
