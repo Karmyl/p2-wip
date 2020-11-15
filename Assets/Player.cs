@@ -5,7 +5,7 @@ using Mono.Data.Sqlite;
 using System.Data;
 using System;
 
-public class Player : MonoBehaviour
+public class Database : MonoBehaviour
 {
 private int id = 1;
 private string nimi1 = "Matti";
@@ -14,7 +14,7 @@ private string nimi2 = "Lotta";
 private string tableName = "Pelaaja";
 
 
-private string databaseName = "Player.db";
+private string databaseName = "Userdata.db";
 
 // Start is called before the first frame update
     void Start()
