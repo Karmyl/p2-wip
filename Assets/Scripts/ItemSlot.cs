@@ -19,7 +19,7 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 if(child.gameObject.tag == "Dino")
                 {
                     Debug.Log("Dino hidastuu");
-                    child.gameObject.GetComponent<DinoMoving>().speed = 100.0f;
+                    child.gameObject.GetComponent<DinoMoving>().DinoSlowed();
                 }
             }
         }

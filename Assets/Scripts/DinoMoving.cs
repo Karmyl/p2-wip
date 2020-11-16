@@ -5,18 +5,33 @@ using UnityEngine;
 public class DinoMoving : MonoBehaviour
 {
     public float speed;
+    public float speedMultiplier = 0.7f;
+    private float slowDownTimer = 0.0f;
+    public float slowDownDuration;
+    private bool isSlowed = false;
+    private float originalSpeed;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        originalSpeed = speed;
     }
 
     // Update is called once per frame
     //Set speed to dino
     void Update()
     {
-      this.transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
+        if (isSlowed)
+        {
+            slowDownTimer -= Time.deltaTime;
+
+            if (slowDownTimer <= 0.0f)
+            {
+                isSlowed = false;
+                speed = originalSpeed;
+            }
+        }
+        this.transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
     }
 
     //Check if collision has happened
@@ -27,5 +42,12 @@ public class DinoMoving : MonoBehaviour
             Debug.Log("Tormays tapahtunut!");
             Destroy(collision.gameObject);
         }
+    }
+
+    public void DinoSlowed()
+    {
+        isSlowed = true;
+        slowDownTimer = slowDownDuration;
+        speed = originalSpeed * speedMultiplier;
     }
 }

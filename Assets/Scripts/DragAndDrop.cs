@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
+public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+{
 
     [SerializeField] private Canvas canvas;
     public Vector3 defaultPosition;
@@ -19,7 +20,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         defaultPosition = GetComponent<RectTransform>().localPosition;
     }
 
-    public void OnBeginDrag(PointerEventData eventData) 
+    public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("OnBeginDrag");
         droppedOnSlot = false;
