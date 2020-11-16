@@ -6,6 +6,8 @@ using UnityEngine.EventSystems;
 public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler {
 
     [SerializeField] private Canvas canvas;
+    public Vector3 defaultPosition;
+    public bool droppedOnSlot;
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
@@ -14,10 +16,13 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        defaultPosition = GetComponent<RectTransform>().localPosition;
     }
 
-    public void OnBeginDrag(PointerEventData eventData) {
+    public void OnBeginDrag(PointerEventData eventData) 
+    {
         Debug.Log("OnBeginDrag");
+        droppedOnSlot = false;
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
     }
@@ -33,6 +38,15 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         Debug.Log("OnEndDrag");
         canvasGroup.alpha = 1f;
         canvasGroup.blocksRaycasts = true;
+
+        if (droppedOnSlot)
+        {
+            defaultPosition = this.rectTransform.localPosition;
+        }
+        else
+        {
+            this.rectTransform.localPosition = defaultPosition;
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
