@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class Score : MonoBehaviour
 {
     private static Text text;
-    private static int score;
+    public static int score;
+    public static int numChickens;
 
     void Start()
     {
-       //Set score to zero.
-       Score.score = 0;
+        //Set score to zero.
+        Score.score = 0;
     }
 
     void Update()
