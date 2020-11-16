@@ -17,20 +17,17 @@ public class ChickenMoving : MonoBehaviour
     // Set speed to chicken
     void Update()
     {
-      this.transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
+        this.transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
     }
 
     // Check if chicken gets home and destroy chicken when it gets home.
     void OnCollisionEnter(Collision col)
     {
-        Debug.Log("Paastiin kotiin!");
-       if (col.gameObject.tag == "Koti")
+        if (col.gameObject.tag == "Koti")
         {
-           Score.AddScore(1);
-           Destroy(gameObject);
+            Debug.Log("Paastiin kotiin!");
+            Score.AddScore(1);
+            Destroy(gameObject);
         }
-
     }
-
 }
-
