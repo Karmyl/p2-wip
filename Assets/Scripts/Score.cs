@@ -11,6 +11,7 @@ public class Score : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Nyt");
         //Set score to zero.
         Score.score = 0;
     }
