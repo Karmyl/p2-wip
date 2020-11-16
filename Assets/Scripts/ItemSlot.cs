@@ -14,5 +14,4 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             eventData.pointerDrag.GetComponent<DragAndDrop>().droppedOnSlot = true;
         }
     }
-
 }

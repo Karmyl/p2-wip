@@ -42,6 +42,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         if (droppedOnSlot)
         {
             defaultPosition = this.rectTransform.localPosition;
+            Destroy(gameObject);
         }
         else
         {
