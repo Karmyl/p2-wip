@@ -12,6 +12,16 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         {
             eventData.pointerDrag.GetComponent<RectTransform>().anchoredPosition = GetComponent<RectTransform>().anchoredPosition;
             eventData.pointerDrag.GetComponent<DragAndDrop>().droppedOnSlot = true;
+
+            foreach (Transform child in transform)
+            {
+                //child is your child transform
+                if(child.gameObject.tag == "Dino")
+                {
+                    Debug.Log("Dino hidastuu");
+                    child.gameObject.GetComponent<DinoMoving>().speed = 100.0f;
+                }
+            }
         }
     }
 }
