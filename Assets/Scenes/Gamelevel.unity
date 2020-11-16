@@ -380,10 +380,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 237327134}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9926ba5f2bb7b40a7188b1d33129a9, type: 3}
+  m_Script: {fileID: 11500000, guid: 11aeedde6efc7bd4ebbfe55d49da38dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 530
+  speed: 500
 --- !u!65 &237327136
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -705,7 +705,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 860575417}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28342d1755c8e9f4796a083d90a49341, type: 3}
+  m_Script: {fileID: 11500000, guid: fa1cfecdd61e1394a913bef1cf6ce441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &860575420
@@ -987,8 +987,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -113, y: -86.5}
-  m_SizeDelta: {x: 256.84888, y: 172.99744}
+  m_AnchoredPosition: {x: -116, y: -95.726}
+  m_SizeDelta: {x: 256.84888, y: 191.45264}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &988111485
 MonoBehaviour:
@@ -1009,7 +1009,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 80d83c46f66bcc64abbb991d0a6133fc, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8bd1140eebfc0754f9142d5e9082c6e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1391,7 +1391,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129088788}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 313, y: 519, z: 0}
+  m_LocalPosition: {x: 310, y: 507, z: 0}
   m_LocalScale: {x: 152.72388, y: 107.47021, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1422,7 +1422,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1129088788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcc4965290311374cbf99162aa42e5e7, type: 3}
+  m_Script: {fileID: 11500000, guid: 7caa8c0d6c95c6d468b73d200ba85f5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 500
