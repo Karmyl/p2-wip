@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class ChickenMoving : MonoBehaviour
 {
-
-    public GameObject Cube; //The Cube
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -15,13 +14,13 @@ public class ChickenMoving : MonoBehaviour
     }
 
     // Update is called once per frame
-    //Set speed to chicken
+    // Set speed to chicken
     void Update()
     {
-      Cube.transform.position += new Vector3(3f, 0f, 0f);
+      this.transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
     }
 
-    //Check if chicken gets home and destroy chicken when it gets home.
+    // Check if chicken gets home and destroy chicken when it gets home.
     void OnCollisionEnter(Collision col)
     {
         Debug.Log("Paastiin kotiin!");

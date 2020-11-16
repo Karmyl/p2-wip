@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class DinoMoving : MonoBehaviour
 {
-
-    public GameObject Cube; //The Cube
+    public float speed;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class DinoMoving : MonoBehaviour
     //Set speed to dino
     void Update()
     {
-      Cube.transform.position += new Vector3(2f, 0f, 0f);
+      this.transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
     }
 
     //Check if collision has happened
