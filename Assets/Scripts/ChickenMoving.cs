@@ -28,6 +28,17 @@ public class ChickenMoving : MonoBehaviour
             Score.AddScore(5);
             Score.AddChickenInHome();
             Destroy(gameObject);
+
+            // Stop dinosaur chasing in this lane.
+            foreach (Transform child in this.transform.parent.transform)
+            {
+                //child is your child transform
+                if (child.gameObject.tag == "Dino")
+                {
+                    Debug.Log("Dino hidastuu");
+                    child.gameObject.GetComponent<DinoMoving>().speed = 0.0f;
+                }
+            }
         }
     }
 }

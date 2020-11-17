@@ -15,6 +15,8 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             bool isBlockAllowed = false;
             if(eventData.pointerDrag.GetComponent<DragAndDrop>().blockID == allowedBlockID)
             {
+                // Add one score if block is set in correct lane.
+                Score.AddScore(1);
                 isBlockAllowed = true;
             }
 
