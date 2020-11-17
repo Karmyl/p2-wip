@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class ChickensAreHome : MonoBehaviour
 {
-    public int chickensNeeded;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -15,7 +13,9 @@ public class ChickensAreHome : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Score.score >= chickensNeeded) 
+        // NOTE: Muuta nuo scoren suorat attribuuttikutsut
+        // metodeiksi
+        if (Score.numChickensInHome >= Score.numChickensInGame)
         {
             Time.timeScale = 0;
         }

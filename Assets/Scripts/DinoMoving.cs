@@ -40,14 +40,19 @@ public class DinoMoving : MonoBehaviour
         if (collision.gameObject.tag == "Kana")
         {
             Debug.Log("Tormays tapahtunut!");
+            Score.RemoveChickenInHome();
             Destroy(collision.gameObject);
+            speed = 0.0f;
         }
     }
 
     public void DinoSlowed()
     {
-        isSlowed = true;
-        slowDownTimer = slowDownDuration;
-        speed = originalSpeed * speedMultiplier;
+        if(!isSlowed)
+        {
+            isSlowed = true;
+            slowDownTimer = slowDownDuration;
+            speed = originalSpeed * speedMultiplier;
+        }
     }
 }

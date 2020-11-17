@@ -25,8 +25,8 @@ public class ChickenMoving : MonoBehaviour
     {
         if (col.gameObject.tag == "Koti")
         {
-            Debug.Log("Paastiin kotiin!");
-            Score.AddScore(1);
+            Score.AddScore(5);
+            Score.AddChickenInHome();
             Destroy(gameObject);
         }
     }

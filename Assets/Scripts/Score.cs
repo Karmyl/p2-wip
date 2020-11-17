@@ -7,13 +7,14 @@ public class Score : MonoBehaviour
 {
     private static Text text;
     public static int score;
-    public static int numChickens;
+    public static int numChickensInHome;
+    public static int numChickensInGame;
 
     void Start()
     {
-        Debug.Log("Nyt");
-        //Set score to zero.
         Score.score = 0;
+        Score.numChickensInHome = 0;
+        Score.numChickensInGame = 4;
     }
 
     void Update()
@@ -21,10 +22,18 @@ public class Score : MonoBehaviour
 
     }
 
+    public static void AddChickenInHome()
+    {
+        Score.numChickensInHome++;
+    }
+    public static void RemoveChickenInHome()
+    {
+        Score.numChickensInGame--;
+    }
+
     // Find ScoreText component and add value to it.
     public static void AddScore(int value)
     {
-
         Score.score += value;
         GameObject go = GameObject.Find("ScoreText");
         if (go)
@@ -33,5 +42,4 @@ public class Score : MonoBehaviour
           Score.text.text = Score.score.ToString();
         }
     }
-
 }
