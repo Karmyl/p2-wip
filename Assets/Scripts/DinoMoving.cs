@@ -31,6 +31,22 @@ public class DinoMoving : MonoBehaviour
                 speed = originalSpeed;
             }
         }
+
+        // Do nothing if there is no chicken in lane
+        bool isChickenFound = false;
+        foreach (Transform child in this.transform.parent.transform)
+        {
+            if (child.gameObject.tag == "Kana")
+            {
+                isChickenFound = true;
+            }
+        }
+
+        if(!isChickenFound)
+        {
+            speed = 0.0f;
+        }
+
         this.transform.position += new Vector3(speed, 0f, 0f) * Time.deltaTime;
     }
 

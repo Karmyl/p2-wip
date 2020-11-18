@@ -17,6 +17,7 @@ public class ChickensAreHome : MonoBehaviour
         // metodeiksi
         if (Score.numChickensInHome >= Score.numChickensInGame)
         {
+            Application.LoadLevel("GameOver");
             Time.timeScale = 0;
         }
     }
