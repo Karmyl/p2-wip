@@ -29,8 +29,13 @@ public class AudioManager : MonoBehaviour
             return;
         } else
         {
+            
             backgroundMusic.Stop();
             backgroundMusic.clip = music;
+            if (backgroundMusic.clip.name == "Game_Over_BGMusic")
+            {
+                backgroundMusic.loop = false;
+            }
             backgroundMusic.Play();
 
         }
