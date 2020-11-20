@@ -1,15 +1,30 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿
+using UnityEngine.Audio;
 using UnityEngine;
-
+using System;
 public class AudioManager : MonoBehaviour
 {
+
+    public Sound[] sounds;
 
     public AudioSource backgroundMusic;
 
     private void Awake()
     { 
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.name = s.name;
+            s.source.volume = s.volume;
 
+        }
+    }
+
+    public void PlaySound(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Play();
     }
 
     void Start()
