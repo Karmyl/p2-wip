@@ -45,10 +45,14 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         if (droppedOnSlot)
         {
             this.rectTransform.localPosition = defaultPosition;
+            FindObjectOfType<AudioManager>().PlaySound("coin collected");
+
         }
         else
         {
             this.rectTransform.localPosition = defaultPosition;
+            FindObjectOfType<AudioManager>().PlaySound("lane missed");
+
         }
     }
 

@@ -8,6 +8,8 @@ public class MenuScript : MonoBehaviour
         Application.LoadLevel(sceneName);
 
         FindObjectOfType<AudioManager>().PlaySound("buttonSoundFX");
+        FindObjectOfType<AudioManager>().PlaySound("chickens");
+        
     }
 
     public void QuitGame()

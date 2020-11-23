@@ -25,6 +25,7 @@ public class Score : MonoBehaviour
     public static void AddChickenInHome()
     {
         Score.numChickensInHome++;
+        FindObjectOfType<AudioManager>().PlaySound("chickenGetsHome");
     }
     public static void RemoveChickenInHome()
     {
