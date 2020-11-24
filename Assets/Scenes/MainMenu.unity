@@ -913,6 +913,16 @@ MonoBehaviour:
     volume: 0.684
     pitch: 0.1
     source: {fileID: 0}
+  - name: totalCoins
+    clip: {fileID: 8300000, guid: 8e387d06d936ce34088d3f641df03dbc, type: 3}
+    volume: 0.684
+    pitch: 0.1
+    source: {fileID: 0}
+  - name: chickenGetsEaten
+    clip: {fileID: 8300000, guid: e81af0647a2d0734c81545ae2353a685, type: 3}
+    volume: 0.763
+    pitch: 0.1
+    source: {fileID: 0}
   backgroundMusic: {fileID: 554902228}
 --- !u!4 &554902230
 Transform:

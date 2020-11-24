@@ -59,6 +59,7 @@ public class DinoMoving : MonoBehaviour
             Score.RemoveChickenInHome();
             Destroy(collision.gameObject);
             speed = 0.0f;
+            FindObjectOfType<AudioManager>().PlaySound("chickenGetsEaten");
         }
     }
 

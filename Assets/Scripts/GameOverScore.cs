@@ -17,14 +17,21 @@ public class GameOverScore : MonoBehaviour
 
     private IEnumerator ScoreUpdater()
     {
-        while (true)
+        bool isDone = true;
+        while (isDone)
         {
             if (displayScore < Score.score)
             {
                 displayScore++;
+                FindObjectOfType<AudioManager>().PlaySound("totalCoins");
                 scoreUI.text = displayScore.ToString();
+            } else
+            {
+                FindObjectOfType<AudioManager>().PlaySound("chickenGetsHome");
+                isDone = false;
             }
             yield return new WaitForSeconds(0.1f);
         }
+
     }
 }
