@@ -5,21 +5,26 @@ using UnityEngine.UI;
 
 public class GameOverScore : MonoBehaviour
 {
-    private static Text text;
+    //private static Text text;
+    private int displayScore;
+    public Text scoreUI;
     // Start is called before the first frame update
     void Start()
     {
-
+        displayScore = 0;
+        StartCoroutine(ScoreUpdater());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator ScoreUpdater()
     {
-        GameObject go = GameObject.Find("CoinsText");
-        if (go)
+        while (true)
         {
-            GameOverScore.text = go.GetComponent<Text>();
-            GameOverScore.text.text = Score.score.ToString();
+            if (displayScore < Score.score)
+            {
+                displayScore++;
+                scoreUI.text = displayScore.ToString();
+            }
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

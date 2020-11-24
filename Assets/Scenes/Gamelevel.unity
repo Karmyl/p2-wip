@@ -2146,6 +2146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cec65a505b577d4784f5ff5c2d21c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chasingDinosaur: {fileID: 1851961312}
   speed: 75
 --- !u!54 &1162460272
 Rigidbody:
@@ -2381,6 +2382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cec65a505b577d4784f5ff5c2d21c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chasingDinosaur: {fileID: 466776332}
   speed: 95
 --- !u!54 &1195768469
 Rigidbody:
@@ -3848,6 +3850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cec65a505b577d4784f5ff5c2d21c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chasingDinosaur: {fileID: 960388609}
   speed: 85
 --- !u!54 &2006103509
 Rigidbody:
@@ -4120,6 +4123,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cec65a505b577d4784f5ff5c2d21c35, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  chasingDinosaur: {fileID: 1840064265}
   speed: 105
 --- !u!54 &2065936739
 Rigidbody:
