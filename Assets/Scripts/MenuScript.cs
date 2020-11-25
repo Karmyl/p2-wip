@@ -9,7 +9,7 @@ public class MenuScript : MonoBehaviour
 
         FindObjectOfType<AudioManager>().PlaySound("buttonSoundFX");
         
-        if (sceneName == "GameLevel")
+        if (sceneName == "Gamelevel")
         {
             FindObjectOfType<AudioManager>().PlaySound("chickens");
         }
