@@ -43,6 +43,13 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
+    //Stop playing sound effect 
+    public void StopSound(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        s.source.Stop();
+    }
+
     void Start()
     {
         DontDestroyOnLoad(gameObject);
@@ -64,6 +71,12 @@ public class AudioManager : MonoBehaviour
         {
             musicVolumeValue = PlayerPrefs.GetFloat(BackgroundPref);
         }
+    }
+
+    //Stop sound
+    public void StopSound(AudioClip clip)
+    {
+       
     }
 
     public void ChangeBackgroundMusic(AudioClip music)

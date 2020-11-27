@@ -889,7 +889,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: buttonSoundFX
-    clip: {fileID: 8300000, guid: 546bdf61ac46628449cdd0ef2c53cad2, type: 3}
+    clip: {fileID: 8300000, guid: 2846aac76f173184eaf05e62318c86d1, type: 3}
     volume: 0.501
     pitch: 0.1
     source: {fileID: 0}

@@ -13,6 +13,10 @@ public class MenuScript : MonoBehaviour
         {
             FindObjectOfType<AudioManager>().PlaySound("chickens");
         }
+        else if (sceneName == "MainMenu")
+        {
+            FindObjectOfType<AudioManager>().StopSound("chickens");
+        }
         
     }
 
