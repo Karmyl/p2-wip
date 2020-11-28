@@ -6,24 +6,19 @@ public class AudioManager : MonoBehaviour
 {
     private static readonly string FirstPlay = "FirstPlay";
     private static readonly string BackgroundPref = "BackgroundPref";
+    private static readonly string FxVolumePref = "FxVolumePref";
+
     private int firstPlayValue;
     public Sound[] sounds;
 
     public AudioSource backgroundMusic;
     private float musicVolumeValue;
+    private float fxVolumeValue;
 
     
     private void Awake()
     {
         ContinueSettings();
-
-        foreach (Sound s in sounds)
-        {
-            s.source = gameObject.AddComponent<AudioSource>();
-            s.source.clip = s.clip;
-            s.source.name = s.name;
-            s.source.volume = s.volume;
-        }
 
         Debug.Log(PlayerPrefs.GetInt("FirstPlay"));
 
@@ -33,7 +28,17 @@ public class AudioManager : MonoBehaviour
     private void ContinueSettings()
     {
         musicVolumeValue = PlayerPrefs.GetFloat(BackgroundPref);
+        fxVolumeValue = PlayerPrefs.GetFloat(FxVolumePref);
+
         backgroundMusic.volume = musicVolumeValue;
+
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            s.source.name = s.name;
+            s.source.volume = s.volume + (fxVolumeValue - 0.5f);
+        }
     }
 
     //play sound effect by name
@@ -52,7 +57,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        backgroundMusic.Play();
+
         DontDestroyOnLoad(gameObject);
 
         if(FindObjectsOfType<AudioManager>().Length > 1)
@@ -61,21 +66,21 @@ public class AudioManager : MonoBehaviour
         }
 
         //check if first play
-        firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
-
-        if (firstPlayValue == 0)//set values
-        {
-            backgroundMusic.volume = .5f;
-            musicVolumeValue = backgroundMusic.volume;
-
-            PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
-            PlayerPrefs.SetInt(FirstPlay, -1);
-
-        }
-        else //get values from playerprefs and set slider
-        {
-            musicVolumeValue = PlayerPrefs.GetFloat(BackgroundPref);
-        }
+        //firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
+        //
+        //if (firstPlayValue == 0)//set values
+        //{
+        //    backgroundMusic.volume = .5f;
+        //    musicVolumeValue = backgroundMusic.volume;
+        //
+        //    PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
+        //    PlayerPrefs.SetInt(FirstPlay, -1);
+        //
+        //}
+        //else //get values from playerprefs and set slider
+        //{
+        //    musicVolumeValue = PlayerPrefs.GetFloat(BackgroundPref);
+        //}
     }
 
     //Stop sound

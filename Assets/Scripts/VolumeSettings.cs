@@ -40,6 +40,7 @@ public class VolumeSettings : MonoBehaviour
             fxVolumeSlider.value = fxVolumeValue;
 
             PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
+            PlayerPrefs.SetFloat(FxVolumePref, fxVolumeValue);
             PlayerPrefs.SetInt(FirstPlay, -1);
 
             SaveSoundSettings();
@@ -59,6 +60,9 @@ public class VolumeSettings : MonoBehaviour
     public void SaveSoundSettings()
     {
         PlayerPrefs.SetFloat(BackgroundPref, musicVolumeSlider.value);
+        Debug.Log("asetukset tallennettu!");
+        Debug.Log(fxVolumeSlider.value);
+
         PlayerPrefs.SetFloat(FxVolumePref, fxVolumeSlider.value);
     }
 
@@ -71,24 +75,18 @@ public class VolumeSettings : MonoBehaviour
         }
     }
 
-    public void ChangeBackgroundVolume()
-    {
-        backgroundMusic.volume = musicVolumeSlider.value;
-    }
-
-    public void ChangeFXVolume()
-    {
-        //backgroundMusic.volume = musicVolumeSlider.value;
-        foreach (Sound s in music.sounds)
-        {
-            float tmp = fxVolumeSlider.value - s.volume;
-            s.source.volume = s.volume + tmp;
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
-    
+
+        backgroundMusic.volume = musicVolumeSlider.value;
+
+        foreach (Sound s in music.sounds)
+        {
+            float tmp = fxVolumeSlider.value - 0.5f;
+            s.source.volume = s.volume + tmp;
+        }
+
+        SaveSoundSettings();
     }
 }
