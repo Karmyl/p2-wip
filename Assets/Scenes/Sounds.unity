@@ -749,7 +749,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1094287258}
-        m_MethodName: ChangeVolume
+        m_MethodName: ChangeBackgroundVolume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -772,6 +772,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicVolumeSlider: {fileID: 1094287257}
+  fxVolumeSlider: {fileID: 0}
 --- !u!1 &1200686348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1067,7 +1068,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 421f787388876d947a53fc80aaee801d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicVolumeSlider: {fileID: 1617738592}
+  musicVolumeSlider: {fileID: 0}
+  fxVolumeSlider: {fileID: 1617738592}
 --- !u!114 &1617738592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1117,7 +1119,18 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1617738591}
+        m_MethodName: ChangeFXVolume
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1659064084
 GameObject:
   m_ObjectHideFlags: 0

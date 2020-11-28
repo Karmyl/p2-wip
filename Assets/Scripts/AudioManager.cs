@@ -52,6 +52,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        backgroundMusic.Play();
         DontDestroyOnLoad(gameObject);
 
         if(FindObjectsOfType<AudioManager>().Length > 1)
@@ -59,9 +60,13 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //check if first play
+        firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
+
         if (firstPlayValue == 0)//set values
         {
-            musicVolumeValue = .5f;
+            backgroundMusic.volume = .5f;
+            musicVolumeValue = backgroundMusic.volume;
 
             PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
             PlayerPrefs.SetInt(FirstPlay, -1);

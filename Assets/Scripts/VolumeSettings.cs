@@ -9,16 +9,19 @@ public class VolumeSettings : MonoBehaviour
     AudioManager music;
     AudioSource backgroundMusic;
     [SerializeField] Slider musicVolumeSlider;
+    [SerializeField] Slider fxVolumeSlider;
    
 
     private static readonly string FirstPlay = "FirstPlay";
     private static readonly string BackgroundPref = "BackgroundPref";
+    private static readonly string FxVolumePref = "FxVolumePref";
     private int firstPlayValue;
     private float musicVolumeValue;
+    private float fxVolumeValue;
+
     // Start is called before the first frame update
     void Start()
     {
-       
     }
 
     private void Awake()
@@ -27,10 +30,14 @@ public class VolumeSettings : MonoBehaviour
         music = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
         backgroundMusic = music.backgroundMusic;
 
+        firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
+
         if (firstPlayValue == 0)//set values
         {
-            musicVolumeValue = backgroundMusic.volume;
+            musicVolumeValue = .5f;
+            fxVolumeValue = .5f;
             musicVolumeSlider.value = musicVolumeValue;
+            fxVolumeSlider.value = fxVolumeValue;
 
             PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
             PlayerPrefs.SetInt(FirstPlay, -1);
@@ -42,15 +49,17 @@ public class VolumeSettings : MonoBehaviour
             musicVolumeValue = PlayerPrefs.GetFloat(BackgroundPref);
             musicVolumeSlider.value = musicVolumeValue;
 
+            fxVolumeValue = PlayerPrefs.GetFloat(FxVolumePref);
+            fxVolumeSlider.value = fxVolumeValue; 
             
         }
-
-        Debug.Log(music.name);
     }
+
     //save sound values
     public void SaveSoundSettings()
     {
         PlayerPrefs.SetFloat(BackgroundPref, musicVolumeSlider.value);
+        PlayerPrefs.SetFloat(FxVolumePref, fxVolumeSlider.value);
     }
 
     //if player loses focus in the game -> save settings
@@ -72,8 +81,8 @@ public class VolumeSettings : MonoBehaviour
         //backgroundMusic.volume = musicVolumeSlider.value;
         foreach (Sound s in music.sounds)
         {
-            float tmp = musicVolumeSlider.value - s.source.volume;
-            s.source.volume = s.source.volume + tmp;
+            float tmp = fxVolumeSlider.value - s.volume;
+            s.source.volume = s.volume + tmp;
         }
     }
 
