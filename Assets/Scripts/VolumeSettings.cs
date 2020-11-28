@@ -62,20 +62,24 @@ public class VolumeSettings : MonoBehaviour
         }
     }
 
-    public void ChangeVolume()
+    public void ChangeBackgroundVolume()
     {
         backgroundMusic.volume = musicVolumeSlider.value;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeFXVolume()
     {
-        backgroundMusic.volume = musicVolumeSlider.value;
-
+        //backgroundMusic.volume = musicVolumeSlider.value;
         foreach (Sound s in music.sounds)
         {
             float tmp = musicVolumeSlider.value - s.source.volume;
             s.source.volume = s.source.volume + tmp;
         }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+    
     }
 }
