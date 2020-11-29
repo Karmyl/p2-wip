@@ -895,7 +895,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: chickens
     clip: {fileID: 8300000, guid: 6db06806a0f13d341b0bb1e0779f2253, type: 3}
-    volume: 0.719
+    volume: 0.533
     pitch: 0.1
     source: {fileID: 0}
   - name: chickenGetsHome
@@ -905,22 +905,22 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: coin collected
     clip: {fileID: 8300000, guid: 4ee91602222cf2b4885b727632a5bdf1, type: 3}
-    volume: 0.646
+    volume: 0.52
     pitch: 0.1
     source: {fileID: 0}
   - name: lane missed
     clip: {fileID: 8300000, guid: aece8d8d431c519478734f7567baffe7, type: 3}
-    volume: 0.684
+    volume: 0.554
     pitch: 0.1
     source: {fileID: 0}
   - name: totalCoins
     clip: {fileID: 8300000, guid: 8e387d06d936ce34088d3f641df03dbc, type: 3}
-    volume: 0.684
+    volume: 0.568
     pitch: 0.1
     source: {fileID: 0}
   - name: chickenGetsEaten
     clip: {fileID: 8300000, guid: e81af0647a2d0734c81545ae2353a685, type: 3}
-    volume: 0.763
+    volume: 0.561
     pitch: 0.1
     source: {fileID: 0}
   backgroundMusic: {fileID: 554902228}
