@@ -65,22 +65,28 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //check if first play
-        //firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
-        //
-        //if (firstPlayValue == 0)//set values
-        //{
-        //    backgroundMusic.volume = .5f;
-        //    musicVolumeValue = backgroundMusic.volume;
-        //
-        //    PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
-        //    PlayerPrefs.SetInt(FirstPlay, -1);
-        //
-        //}
-        //else //get values from playerprefs and set slider
-        //{
-        //    musicVolumeValue = PlayerPrefs.GetFloat(BackgroundPref);
-        //}
+        //check if first play ---------------------korjaus
+        firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
+        
+        if (firstPlayValue == 0)//set values
+        {
+            backgroundMusic.volume = .5f;
+            fxVolumeValue = .5f;
+            musicVolumeValue = backgroundMusic.volume;
+
+            foreach (Sound s in sounds)
+            {
+                s.source = gameObject.AddComponent<AudioSource>();
+                s.source.clip = s.clip;
+                s.source.name = s.name;
+                s.source.volume = s.volume;
+            }
+
+            PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
+            PlayerPrefs.SetFloat(FxVolumePref, fxVolumeValue);
+            PlayerPrefs.SetInt(FirstPlay, -1);       
+        }
+        
     }
 
     //Stop sound
