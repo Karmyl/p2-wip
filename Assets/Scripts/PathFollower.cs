@@ -102,7 +102,7 @@ public class PathFollower : MonoBehaviour
         else
         {
             // End of path
-            Debug.Log("End of path");
+            //Debug.Log("End of path");
         }
     }
 
@@ -114,6 +114,8 @@ public class PathFollower : MonoBehaviour
         {
             if (collision.other.gameObject.CompareTag("Kana"))
             {
+                Debug.Log("Dino osui kanaan");
+
                 // Dinosaur got Chicken
                 Destroy(collision.other.gameObject);
                 this.enabled = false;
@@ -133,6 +135,7 @@ public class PathFollower : MonoBehaviour
         {
             if (collision.other.gameObject.CompareTag("Koti"))
             {
+                Debug.Log("Pääsin kotiin");
                 // Chicken got home
                 if (chicken != null)
                 {
