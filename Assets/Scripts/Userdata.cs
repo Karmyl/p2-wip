@@ -7,23 +7,23 @@ using System;
 
 public class Database : MonoBehaviour
 {
-private int id = 1;
-private string nimi1 = "Matti";
-private string nimi2 = "Lotta";
+    private int id = 1;
+    private string nimi1 = "Matti";
+    private string nimi2 = "Lotta";
 
-private string tableName = "Pelaaja";
+    private string tableName = "Pelaaja";
 
 
-private string databaseName = "Userdata.db";
+    private string databaseName = "Userdata.db";
 
-// Start is called before the first frame update
+    // Start is called before the first frame update
     void Start()
     {
-	
- 	 createDataBase(databaseName);
-     createTable(tableName);
-	
-	      printData();
+
+        createDataBase(databaseName);
+        createTable(tableName);
+
+        printData();
         addData(id, nimi1);
         id++;
         addData(id, nimi2);
@@ -39,10 +39,10 @@ private string databaseName = "Userdata.db";
         id++;
         printData();
     }
-	   // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void createDataBase(string dbName)
@@ -53,7 +53,7 @@ private string databaseName = "Userdata.db";
         dbcon.Close();
         dbcon = null;
     }
-	void createTable(string tName)
+    void createTable(string tName)
     {
         IDbCommand dbcmd;
         IDataReader reader;
@@ -63,14 +63,14 @@ private string databaseName = "Userdata.db";
         dbcon.Open();
 
         dbcmd = dbcon.CreateCommand();
-        string q_createTable = "CREATE TABLE IF NOT EXISTS "+ tName + "(id INTEGER PRIMARY KEY, nimi TEXT )";
+        string q_createTable = "CREATE TABLE IF NOT EXISTS " + tName + "(id INTEGER PRIMARY KEY, nimi TEXT )";
         dbcmd.CommandText = q_createTable;
         reader = dbcmd.ExecuteReader();
 
         dbcon.Close();
         dbcon = null;
     }
-	 void printData()
+    void printData()
     {
         string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "";
         IDbConnection dbconn;
@@ -84,7 +84,7 @@ private string databaseName = "Userdata.db";
         {
             int id = reader.GetInt32(0);
             string nickname = reader.GetString(1);
-            
+
             Debug.Log("Id: " + id + "  Nimi: " + nimi1);
         }
         reader.Close();
@@ -94,7 +94,7 @@ private string databaseName = "Userdata.db";
         dbconn.Close();
         dbconn = null;
     }
-	    void addData(int id, string nimi)
+    void addData(int id, string nimi)
     {
         string conn = "URI=file:" + Application.dataPath + "/" + databaseName + "";
         IDbConnection dbconn;
@@ -102,7 +102,7 @@ private string databaseName = "Userdata.db";
         dbconn.Open(); //Open connection to the database.
 
         IDbCommand dbcmd = dbconn.CreateCommand();
-        string sqlQuery = "INSERT INTO " + tableName + " (id, nimi) VALUES ('"+ id +"', '"+nimi+"')";
+        string sqlQuery = "INSERT INTO " + tableName + " (id, nimi) VALUES ('" + id + "', '" + nimi + "')";
         dbcmd.CommandText = sqlQuery;
         dbcmd.ExecuteNonQuery();
 
