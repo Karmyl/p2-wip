@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DeleteProfile.unity
     guid: 3118f8faf42f1fc48ae5bb1723d0e184
+  - enabled: 1
+    path: Assets/Scenes/ChangeProfile.unity
+    guid: b52432c992971d04399243dfdf4dc7fe
   m_configObjects: {}
