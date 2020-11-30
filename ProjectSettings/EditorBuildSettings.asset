@@ -38,4 +38,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Gamelevel.unity
     guid: 912041893792854429419e05583eea02
+  - enabled: 1
+    path: Assets/Scenes/DeleteProfile.unity
+    guid: 3118f8faf42f1fc48ae5bb1723d0e184
   m_configObjects: {}
