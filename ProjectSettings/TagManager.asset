@@ -8,6 +8,8 @@ TagManager:
   - Kana
   - Koti
   - Block
+  - Ground
+  - Path
   layers:
   - Default
   - TransparentFX

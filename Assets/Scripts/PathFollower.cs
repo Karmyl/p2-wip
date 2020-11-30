@@ -26,8 +26,13 @@ public class PathFollower : MonoBehaviour
     private int currentWaypointIndex;
     private int maxWaypointIndex;
     private float accumulator;
+
+    //Audiomanager for playing sound effects
+    AudioManager audiomanager;
+
     void Start()
     {
+        audiomanager = FindObjectOfType<AudioManager>();
         accumulator = 0.0f;
         currentWaypointIndex = -1;
         maxWaypointIndex = waypoints.Length;
@@ -125,7 +130,15 @@ public class PathFollower : MonoBehaviour
                 this.GetComponent<Rigidbody>().isKinematic = true;
 
                 // Sound effect here
+                audiomanager.PlaySound("chickenGetsEaten");
+                // Feathers animation here 
 
+            } else if (collision.other.gameObject.CompareTag("Block"))
+            {
+                Debug.Log("Dino osui palikkaan");
+
+                // Sound effect here
+                audiomanager.PlaySound("dino_osuu_palikkaan");
                 // Feathers animation here 
             }
         }
@@ -149,6 +162,7 @@ public class PathFollower : MonoBehaviour
                 }
 
                 // Sound effect here
+                audiomanager.PlaySound("chickenGetsHome");
             }
         }
     }

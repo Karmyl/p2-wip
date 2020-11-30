@@ -13,9 +13,12 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 
     private RectTransform rectTransform;
     private CanvasGroup canvasGroup;
+    AudioManager audiomanager;
 
     private void Awake()
     {
+        audiomanager = FindObjectOfType<AudioManager>();
+
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         defaultPosition = GetComponent<RectTransform>().localPosition;
@@ -45,13 +48,14 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         if (droppedOnSlot)
         {
             this.rectTransform.localPosition = defaultPosition;
-            FindObjectOfType<AudioManager>().PlaySound("coin collected");
+            audiomanager.PlaySound("coin collected");
+            //audiomanager.PlaySound("dino_osuu_palikkaan");
 
         }
         else
         {
             this.rectTransform.localPosition = defaultPosition;
-            FindObjectOfType<AudioManager>().PlaySound("lane missed");
+            audiomanager.PlaySound("lane missed");
 
         }
     }

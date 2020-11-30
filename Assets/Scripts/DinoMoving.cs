@@ -11,9 +11,11 @@ public class DinoMoving : MonoBehaviour
     private bool isSlowed = false;
     private float originalSpeed;
 
+    AudioManager audiomanager;
     // Start is called before the first frame update
     void Start()
     {
+        audiomanager = FindObjectOfType<AudioManager>();
         originalSpeed = speed;
     }
 
@@ -59,7 +61,12 @@ public class DinoMoving : MonoBehaviour
             Score.RemoveChickenInHome();
             Destroy(collision.gameObject);
             speed = 0.0f;
-            FindObjectOfType<AudioManager>().PlaySound("chickenGetsEaten");
+            audiomanager.PlaySound("chickenGetsEaten");
+        }
+        else if (collision.gameObject.tag == "Block")
+        {
+            audiomanager.PlaySound("dino_osuu_palikkaan");
+
         }
     }
 
