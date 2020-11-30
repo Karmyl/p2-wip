@@ -36,7 +36,7 @@ public class DatabaseLoader : MonoBehaviour
             AddNewPlayer("Pelaaja1", 0, 0);
             AddNewPlayer("Pelaaja2", 0, 0);
             AddNewPlayer("Pelaaja3", 0, 0);
-
+            PrintPlayers();
             //removeData(1);
             //printData();
             //addData(id, nimi1);
