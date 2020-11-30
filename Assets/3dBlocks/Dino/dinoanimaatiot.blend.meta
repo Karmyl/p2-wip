@@ -12,6 +12,9 @@ ModelImporter:
   - first:
       74: -2762341214651619681
     second: dinokavelee
+  - first:
+      74: -623603649343465320
+    second: Scene
   externalObjects: {}
   materials:
     materialImportMode: 1
