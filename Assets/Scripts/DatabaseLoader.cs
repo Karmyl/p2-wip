@@ -33,6 +33,30 @@ public class DatabaseLoader : MonoBehaviour
         dbconn.Close();
     }
 
+    public static List<Player> GetAllPlayers()
+    {
+        List<Player> players= new List<Player>();
+        IDbConnection dbconn = new SqliteConnection(GetStaticConnectionString());
+        dbconn.Open();
+
+        IDbCommand cmd = dbconn.CreateCommand();
+        cmd.CommandText = "SELECT id, nimi, avatarId, kokonaispisteet FROM " + staticTableName;
+        IDataReader reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            int id = reader.GetInt32(0);
+            string name = reader.GetString(1);
+            int avatarId = reader.GetInt32(2);
+            int score = reader.GetInt32(3);
+            players.Add(new Player(id, name, score, avatarId));
+        }
+
+        reader.Close();
+        cmd.Dispose();
+        dbconn.Close();
+        return players;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
