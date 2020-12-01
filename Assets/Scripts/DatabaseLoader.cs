@@ -83,7 +83,7 @@ public class DatabaseLoader : MonoBehaviour
     {
         IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
-        IDbCommand cmd = CreateCommand("CREATE TABLE IF NOT EXISTS " + tableName + " (id INTEGER PRIMARY KEY, nimi TEXT, Avatar ID INTEGER, Kokonaispisteet INTEGER )", dbconn);
+        IDbCommand cmd = CreateCommand("CREATE TABLE IF NOT EXISTS " + tableName + " (id INTEGER PRIMARY KEY, nimi TEXT, avatarId INTEGER, kokonaispisteet INTEGER )", dbconn);
         IDataReader reader = cmd.ExecuteReader();
         dbconn.Close();
     }
