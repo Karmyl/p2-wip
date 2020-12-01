@@ -8,12 +8,8 @@ using System;
 public class DatabaseLoader : MonoBehaviour
 {
     private static Player currentPlayer = null;
-    private string tableName = "Pelaajat";
-    private string databaseName = "Userdata.db";
-
-    // Static attributes for accessing database
-    public static string staticTableName;
-    public static string staticDatabaseName;
+    private static string tableName = "Pelaajat";
+    private static string databaseName = "Userdata.db";
 
     // Create new player to database and set it as current player
     public static void CreateNewPlayer(string name, int avatarIndex)
@@ -22,10 +18,10 @@ public class DatabaseLoader : MonoBehaviour
 
         // Get new player id from database
         int newPlayerId = -1;
-        IDbConnection dbconn = new SqliteConnection(GetStaticConnectionString());
+        IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
         IDbCommand cmdNewId = dbconn.CreateCommand();
-        cmdNewId.CommandText = "SELECT MAX(id) FROM " + staticTableName;
+        cmdNewId.CommandText = "SELECT MAX(id) FROM " + tableName;
         try
         {
             IDataReader reader = cmdNewId.ExecuteReader();
@@ -44,7 +40,7 @@ public class DatabaseLoader : MonoBehaviour
         cmdNewId.Dispose();
 
         IDbCommand cmdNewPlayer = dbconn.CreateCommand();
-        cmdNewPlayer.CommandText = "INSERT INTO " + staticTableName + "(id, nimi, avatarId, kokonaispisteet) VALUES(" + newPlayerId + ", '" + name + "', " + avatarIndex + ", 0)";
+        cmdNewPlayer.CommandText = "INSERT INTO " + tableName + "(id, nimi, avatarId, kokonaispisteet) VALUES(" + newPlayerId + ", '" + name + "', " + avatarIndex + ", 0)";
         cmdNewPlayer.ExecuteNonQuery();
         cmdNewPlayer.Dispose();
         dbconn.Close();
@@ -73,10 +69,10 @@ public class DatabaseLoader : MonoBehaviour
     public static void SaveCurrentPlayer()
     {
         Player player = DatabaseLoader.GetCurrentPlayer();
-        IDbConnection dbconn = new SqliteConnection(GetStaticConnectionString());
+        IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
         IDbCommand cmd = dbconn.CreateCommand();
-        cmd.CommandText = "UPDATE " + staticTableName + " SET kokonaispisteet = " + player.Score + " WHERE id = " + player.Id;
+        cmd.CommandText = "UPDATE " + tableName + " SET kokonaispisteet = " + player.Score + " WHERE id = " + player.Id;
         cmd.ExecuteNonQuery();
         cmd.Dispose();
         dbconn.Close();
@@ -85,11 +81,11 @@ public class DatabaseLoader : MonoBehaviour
     public static List<Player> GetAllPlayers()
     {
         List<Player> players= new List<Player>();
-        IDbConnection dbconn = new SqliteConnection(GetStaticConnectionString());
+        IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
 
         IDbCommand cmd = dbconn.CreateCommand();
-        cmd.CommandText = "SELECT id, nimi, avatarId, kokonaispisteet FROM " + staticTableName;
+        cmd.CommandText = "SELECT id, nimi, avatarId, kokonaispisteet FROM " + tableName;
         IDataReader reader = cmd.ExecuteReader();
         while (reader.Read())
         {
@@ -110,9 +106,7 @@ public class DatabaseLoader : MonoBehaviour
     void Start()
     {
         // Allocate new static Player-instance
-        DatabaseLoader.currentPlayer = new Player();
-        DatabaseLoader.staticDatabaseName = databaseName;
-        DatabaseLoader.staticTableName = tableName;
+        currentPlayer = new Player();
 
         // Create new database or join to existing one.
         if (CheckExistingDatabase())
@@ -134,11 +128,6 @@ public class DatabaseLoader : MonoBehaviour
             PlayerPrefs.SetInt("lastId", newPlayerId);
             DatabaseLoader.currentPlayer = GetPlayerWithId(newPlayerId);
         }
-    }
-
-    void OnApplicationFocus(bool focus)
-    {
-        
     }
 
     // Check if database already exists.
@@ -281,20 +270,13 @@ public class DatabaseLoader : MonoBehaviour
         dbconn.Close();
     }
 
-    private string GetConnectionString()
+    public static string GetConnectionString()
     {
         string s = "URI=file:" + Application.dataPath + "/" + databaseName;
         return s;
     }
 
-    public static string GetStaticConnectionString()
-    {
-        string s = "URI=file:" + Application.dataPath + "/" + staticDatabaseName;
-        return s;
-    }
-
-    // Create new command with text.
-    private IDbCommand CreateCommand(string commandText, IDbConnection connection)
+    public static IDbCommand CreateCommand(string commandText, IDbConnection connection)
     {
         IDbCommand newCommand = connection.CreateCommand();
         newCommand.CommandText = commandText;

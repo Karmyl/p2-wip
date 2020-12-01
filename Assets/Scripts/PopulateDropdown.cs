@@ -8,7 +8,8 @@ public class PopulateDropdown : MonoBehaviour
     List<Player> players = null;
     public Dropdown dropdown;
     private int selectedPlayerIndex = -1;
-  public void Dropdown_IndexChanged(int index)
+
+    public void Dropdown_IndexChanged(int index)
     {
         Debug.Log(index);
         selectedPlayerIndex = index;
@@ -23,6 +24,14 @@ public class PopulateDropdown : MonoBehaviour
         {
             names.Add(p.PlayerName);
         }
+
+        // Select first item in list if names-array contains at least
+        // one item
+        if(names.Count > 0)
+        {
+            selectedPlayerIndex = 0;
+        }
+
         dropdown.AddOptions(names);
     }
 
@@ -34,5 +43,4 @@ public class PopulateDropdown : MonoBehaviour
             Application.LoadLevel("Profiles");
         }
     }
-
 }
