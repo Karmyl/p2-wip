@@ -15,9 +15,11 @@ public class DatabaseLoader : MonoBehaviour
     public static string staticTableName;
     public static string staticDatabaseName;
 
-    // Create new player to database
+    // Create new player to database and set it as current player
     public static void CreateNewPlayer(string name, int avatarIndex)
     {
+        Player newPlayer = new Player();
+
         // Get new player id from database
         int newPlayerId = -1;
         IDbConnection dbconn = new SqliteConnection(GetStaticConnectionString());
@@ -46,6 +48,12 @@ public class DatabaseLoader : MonoBehaviour
         cmdNewPlayer.ExecuteNonQuery();
         cmdNewPlayer.Dispose();
         dbconn.Close();
+
+        newPlayer.Id = newPlayerId;
+        newPlayer.PlayerName = name;
+        newPlayer.AvatarId = avatarIndex;
+        newPlayer.Score = 0;
+        DatabaseLoader.SetCurrentPlayer(newPlayer);
     }
 
     // Get current loaded Player
