@@ -11,10 +11,10 @@ public class DatabaseLoader : MonoBehaviour
     private string tableName = "Pelaajat";
     private string databaseName = "Userdata.db";
     
-    // Get active Player-instance
+    // Get current loaded Player
     public static Player GetCurrentPlayer()
     {
-        return currentPlayer;
+        return DatabaseLoader.currentPlayer;
     }
 
     // Start is called before the first frame update
@@ -26,31 +26,20 @@ public class DatabaseLoader : MonoBehaviour
         // Create new database or join to existing one.
         if (CheckExistingDatabase())
         {
-            // Return 0
             int lastId = PlayerPrefs.GetInt("lastId");
             if(lastId != 0)
             {
+                // Reload player with last played id
                 DatabaseLoader.currentPlayer = GetPlayerWithId(lastId);
             }
-
-            // Load player data from database.
-            PrintPlayers();
         }
         else
         {
             // Create tables for database and default player.
             CreateTable(tableName);
-            AddNewPlayer("Pelaaja", 0, 0);
-            PrintPlayers();
-
-            //removeData(1);
-            //printData();
-            //addData(id, nimi1);
-            //id++;
-            //printData();
-            //addData(id, nimi2);
-            //id++;
-            //printData();
+            int newPlayerId = AddNewPlayer("Pelaaja", 0, 0);
+            PlayerPrefs.SetInt("lastId", newPlayerId);
+            DatabaseLoader.currentPlayer = GetPlayerWithId(newPlayerId);
         }
     }
 
@@ -127,22 +116,41 @@ public class DatabaseLoader : MonoBehaviour
         return newPlayerId;
     }
 
-    private bool AddNewPlayer(string name, int avatarId, int score)
+    // Add new player to datase.
+    // Return id for new player.
+    private int AddNewPlayer(string name, int avatarId, int score)
     {
         int newPlayerId = GetNewPlayerId();
-        bool result = true;
         IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
         IDbCommand cmd = CreateCommand("INSERT INTO " + tableName + "(id, nimi, avatarId, kokonaispisteet) VALUES(" + newPlayerId + ", '" + name + "', " + avatarId + ", " + score + ")", dbconn);
         cmd.ExecuteNonQuery();
         cmd.Dispose();
         dbconn.Close();
-        return result;
+        return newPlayerId;
     }
 
     private Player GetPlayerWithId(int id)
     {
         Player player = new Player();
+        IDbConnection dbconn = new SqliteConnection(GetConnectionString());
+        dbconn.Open();
+        IDbCommand cmd = CreateCommand("SELECT nimi, avatarId, kokonaispisteet FROM " + tableName + " WHERE id = " + id, dbconn);
+        IDataReader reader = cmd.ExecuteReader();
+        while (reader.Read())
+        {
+            string name = reader.GetString(0);
+            int avatarId = reader.GetInt32(1);
+            int score = reader.GetInt32(2);
+            player.Id = id;
+            player.PlayerName = name;
+            player.AvatarId = avatarId;
+            player.Score = score;
+        }
+
+        reader.Close();
+        cmd.Dispose();
+        dbconn.Close();
         return player;
     }
 
