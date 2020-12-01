@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BlockDraggingLevel2 : MonoBehaviour
 {
+    public int blockID;
+    private bool hasBeenUsed = false;
+
     private bool isDragged = false;
     private bool startedDragging = false;
     private bool endedDragging = false;
@@ -71,7 +74,18 @@ public class BlockDraggingLevel2 : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    //Check for collision in the correct lane
+    void OnCollisionEnter(Collision collision)
+    {
+        if (blockID == collision.gameObject.GetComponent<BlockDetection>().allowedBlockID && !hasBeenUsed)
+        {
+            hasBeenUsed = true;
+            Score.AddScore(1);
+        }
+    }
+
+
+void FixedUpdate()
     {
 
     }
