@@ -3,21 +3,25 @@ using UnityEngine;
 
 public class MenuScript : MonoBehaviour
 {
+    AudioManager audiomanager;
+    private void Start()
+    {
+        audiomanager = FindObjectOfType<AudioManager>();
+    }
     public void ChangeScene(string sceneName)
     {
         Application.LoadLevel(sceneName);
 
-        FindObjectOfType<AudioManager>().PlaySound("buttonSoundFX");
+        audiomanager.PlaySound("buttonSoundFX");
         
         if (sceneName == "Gamelevel")
         {
-            FindObjectOfType<AudioManager>().PlaySound("chickens");
+            audiomanager.PlaySound("chickens");
         }
         else if (sceneName == "MainMenu")
         {
-            FindObjectOfType<AudioManager>().StopSound("chickens");
-        }
-        
+            audiomanager.StopSound("chickens");
+        } 
     }
 
     public void QuitGame()

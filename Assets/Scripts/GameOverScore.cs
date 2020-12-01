@@ -8,10 +8,12 @@ public class GameOverScore : MonoBehaviour
     //private static Text text;
     private int displayScore;
     public Text scoreUI;
+    AudioManager audiomanager;
 
     // Start is called before the first frame update
     void Start()
     {
+        audiomanager = FindObjectOfType<AudioManager>();
         displayScore = 0;
         StartCoroutine(ScoreUpdater());
     }
@@ -24,11 +26,11 @@ public class GameOverScore : MonoBehaviour
             if (displayScore < Score.score)
             {
                 displayScore++;
-                FindObjectOfType<AudioManager>().PlaySound("totalCoins");
+                audiomanager.PlaySound("totalCoins");
                 scoreUI.text = displayScore.ToString();
             } else
             {
-                FindObjectOfType<AudioManager>().PlaySound("chickenGetsHome");
+                audiomanager.PlaySound("chickenGetsHome");
                 isDone = true;
             }
             yield return new WaitForSeconds(0.1f);

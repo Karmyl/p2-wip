@@ -12,7 +12,19 @@ public class SwitchMusicOnLoad : MonoBehaviour
         audiomanager = FindObjectOfType<AudioManager>();
 
         if (newTrack != null)
+        {
             audiomanager.ChangeBackgroundMusic(newTrack);
+
+            if (newTrack.name == "Game_Over_BGMusic")
+            {
+                audiomanager.backgroundMusic.loop = false;
+            } else 
+            {
+                audiomanager.backgroundMusic.loop = true;
+
+            }
+
+        } 
     }
 
     // Update is called once per frame

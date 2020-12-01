@@ -19,7 +19,6 @@ public class AudioManager : MonoBehaviour
     private void Awake()
     {
         ContinueSettings();
-
         Debug.Log(PlayerPrefs.GetInt("FirstPlay"));
 
     }

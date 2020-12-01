@@ -75,9 +75,6 @@ public class VolumeSettings : MonoBehaviour
     public void SaveSoundSettings()
     {
         PlayerPrefs.SetFloat(BackgroundPref, musicVolumeSlider.value);
-        Debug.Log("asetukset tallennettu!");
-        Debug.Log(fxVolumeSlider.value);
-
         PlayerPrefs.SetFloat(FxVolumePref, fxVolumeSlider.value);
     }
 
