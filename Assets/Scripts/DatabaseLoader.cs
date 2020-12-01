@@ -26,17 +26,23 @@ public class DatabaseLoader : MonoBehaviour
         // Create new database or join to existing one.
         if (CheckExistingDatabase())
         {
+            // Return 0
+            int lastId = PlayerPrefs.GetInt("lastId");
+            if(lastId != 0)
+            {
+                DatabaseLoader.currentPlayer = GetPlayerWithId(lastId);
+            }
+
             // Load player data from database.
             PrintPlayers();
         }
         else
         {
-            // Create tables for database.
+            // Create tables for database and default player.
             CreateTable(tableName);
-            AddNewPlayer("Pelaaja1", 0, 0);
-            AddNewPlayer("Pelaaja2", 0, 0);
-            AddNewPlayer("Pelaaja3", 0, 0);
+            AddNewPlayer("Pelaaja", 0, 0);
             PrintPlayers();
+
             //removeData(1);
             //printData();
             //addData(id, nimi1);
@@ -47,6 +53,12 @@ public class DatabaseLoader : MonoBehaviour
             //printData();
         }
     }
+
+    void OnApplicationFocus(bool focus)
+    {
+        
+    }
+
 
     // Check if database already exists.
     // Return true if database is already created, otherwise return false;
@@ -63,7 +75,7 @@ public class DatabaseLoader : MonoBehaviour
             IDataReader reader = cmd.ExecuteReader();
             while (reader.Read())
             {
-                Debug.Log(reader.GetInt32(0));
+                int i = reader.GetInt32(0);
             }
 
             // Jos tultiin tänne asti niin yhdistettiin olemassaolevaan tietokantaan.
@@ -106,7 +118,7 @@ public class DatabaseLoader : MonoBehaviour
         }
         catch
         {
-            // No players exist in table, start with id =1
+            // No players exist in table, start with id = 1
             newPlayerId = 1;
         }
 
@@ -115,54 +127,53 @@ public class DatabaseLoader : MonoBehaviour
         return newPlayerId;
     }
 
-    private bool AddNewPlayer(string name, int scores, int avatarId)
+    private bool AddNewPlayer(string name, int avatarId, int score)
     {
         int newPlayerId = GetNewPlayerId();
         bool result = true;
         IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
-        IDbCommand cmd = CreateCommand("INSERT INTO " + tableName + "(id, nimi) VALUES('" + newPlayerId + "', '" + name + "')", dbconn);
+        IDbCommand cmd = CreateCommand("INSERT INTO " + tableName + "(id, nimi, avatarId, kokonaispisteet) VALUES(" + newPlayerId + ", '" + name + "', " + avatarId + ", " + score + ")", dbconn);
         cmd.ExecuteNonQuery();
         cmd.Dispose();
         dbconn.Close();
         return result;
     }
 
-    private bool RemovePlayer(string name)
+    private Player GetPlayerWithId(int id)
     {
-        bool result = true;
-        return result;
+        Player player = new Player();
+        return player;
     }
 
-    //void removeData(int id)
-    //{
-    //    IDbConnection dbconn;
-    //    dbconn = (IDbConnection)new SqliteConnection(GetConnectionString());
-    //    dbconn.Open(); //Open connection to the database.
+    private bool RemovePlayer(int id)
+    {
+        bool result = true;
+        IDbConnection dbconn = new SqliteConnection(GetConnectionString());
+        dbconn.Open();
 
-    //    IDbCommand dbcmd = dbconn.CreateCommand();
-    //    string sqlQuery = "DELETE FROM " + tableName + " WHERE id = '" + id + "'";
-    //    dbcmd.CommandText = sqlQuery;
-    //    dbcmd.ExecuteNonQuery();
-    //    dbcmd.Dispose();
-    //    dbcmd = null;
-
-    //    dbconn.Close();
-    //    dbconn = null;
-    //}
+        // NOTE: Should check if id exists?
+        IDbCommand cmd = CreateCommand("DELETE FROM " + tableName + " WHERE id = " + id, dbconn);
+        cmd.ExecuteNonQuery();
+        cmd.Dispose();
+        dbconn.Close();
+        return result;
+    }
 
     // Print whole database.
     void PrintPlayers()
     {
         IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
-        IDbCommand cmd = CreateCommand("SELECT id, nimi " + "FROM " + tableName, dbconn);
+        IDbCommand cmd = CreateCommand("SELECT id, nimi, avatarId, kokonaispisteet FROM " + tableName, dbconn);
         IDataReader reader = cmd.ExecuteReader();
         while (reader.Read())
         {
-            int playerId = reader.GetInt32(0);
+            int id = reader.GetInt32(0);
             string name = reader.GetString(1);
-            Debug.Log("Id: " + playerId + "  Nimi: " + name);
+            int avatarId = reader.GetInt32(2);
+            int score = reader.GetInt32(3);
+            Debug.Log("Id: " + id + ", name: " + name + ", avatarId: " + avatarId + ", kokonaispisteet: " + score);
         }
 
         reader.Close();
