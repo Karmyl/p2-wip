@@ -21,6 +21,12 @@ public class DatabaseLoader : MonoBehaviour
         return DatabaseLoader.currentPlayer;
     }
 
+    // Set current active player
+    public static void SetCurrentPlayer(Player player)
+    {
+        DatabaseLoader.currentPlayer = player;
+    }
+
     public static void SaveCurrentPlayer()
     {
         Player player = DatabaseLoader.GetCurrentPlayer();
