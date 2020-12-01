@@ -15,6 +15,39 @@ public class DatabaseLoader : MonoBehaviour
     public static string staticTableName;
     public static string staticDatabaseName;
 
+    // Create new player to database
+    public static void CreateNewPlayer(string name, int avatarIndex)
+    {
+        // Get new player id from database
+        int newPlayerId = -1;
+        IDbConnection dbconn = new SqliteConnection(GetStaticConnectionString());
+        dbconn.Open();
+        IDbCommand cmdNewId = dbconn.CreateCommand();
+        cmdNewId.CommandText = "SELECT MAX(id) FROM " + staticTableName;
+        try
+        {
+            IDataReader reader = cmdNewId.ExecuteReader();
+            while (reader.Read())
+            {
+                newPlayerId = reader.GetInt32(0);
+                newPlayerId++;
+            }
+            reader.Dispose();
+        }
+        catch
+        {
+            // No players exist in table, start with id = 1
+            newPlayerId = 1;
+        }
+        cmdNewId.Dispose();
+
+        IDbCommand cmdNewPlayer = dbconn.CreateCommand();
+        cmdNewPlayer.CommandText = "INSERT INTO " + staticTableName + "(id, nimi, avatarId, kokonaispisteet) VALUES(" + newPlayerId + ", '" + name + "', " + avatarIndex + ", 0)";
+        cmdNewPlayer.ExecuteNonQuery();
+        cmdNewPlayer.Dispose();
+        dbconn.Close();
+    }
+
     // Get current loaded Player
     public static Player GetCurrentPlayer()
     {

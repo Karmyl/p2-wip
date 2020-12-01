@@ -37,6 +37,7 @@ public class GameOverScore : MonoBehaviour
         // Save scores to database
         Player player = DatabaseLoader.GetCurrentPlayer();
         player.Score += Score.score;
+
         DatabaseLoader.SaveCurrentPlayer();
         Debug.Log("id: " + player.Id + ", name: " + player.PlayerName + "avatarId: " + player.AvatarId + ", score: " + player.Score);
     }
