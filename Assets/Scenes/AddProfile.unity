@@ -377,8 +377,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000012719, y: -0.0000052452}
-  m_SizeDelta: {x: 59.092117, y: 43.57437}
+  m_AnchoredPosition: {x: -0, y: -0.0000052452}
+  m_SizeDelta: {x: 83.79524, y: 43.57437}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &248050768
 MonoBehaviour:
@@ -399,7 +399,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 99e535dfb9a7c6e44b3a24b812948c99, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a6ad56cc1c4f7cd40ae4450f0a6893b1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -498,7 +498,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 399239604}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473900225}
+        m_MethodName: AddNewProfile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &399239604
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,6 +559,7 @@ GameObject:
   - component: {fileID: 473900222}
   - component: {fileID: 473900221}
   - component: {fileID: 473900224}
+  - component: {fileID: 473900225}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -632,6 +644,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb0492e03dcdd44ebb110d6c38595b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &473900225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473900220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99956c80833a575409ff3d48269e6037, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  input: {fileID: 1674631647}
 --- !u!1 &512009940
 GameObject:
   m_ObjectHideFlags: 0
@@ -948,7 +973,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 770511472}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473900225}
+        m_MethodName: SetSelectedAvatar
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &770511472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1280,7 +1316,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1074616047}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473900225}
+        m_MethodName: SetSelectedAvatar
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1074616047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1680,7 +1727,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1317366284}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473900225}
+        m_MethodName: SetSelectedAvatar
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1317366284
 MonoBehaviour:
   m_ObjectHideFlags: 0
