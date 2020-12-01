@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class VolumeSettings : MonoBehaviour
@@ -22,6 +23,7 @@ public class VolumeSettings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
     }
 
     private void Awake()
@@ -56,6 +58,19 @@ public class VolumeSettings : MonoBehaviour
         }
     }
 
+    //check when slider is released
+    public void SliderIsReleased()
+    {
+        music.PlaySound("buttonSoundFX");
+    }
+
+
+    //Listen when player drops slider handle 
+    public void DragHasEnded()
+    {
+        music.PlaySound("buttonSoundFX");
+    }
+
     //save sound values
     public void SaveSoundSettings()
     {
@@ -88,5 +103,10 @@ public class VolumeSettings : MonoBehaviour
         }
 
         SaveSoundSettings();
+    }
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        throw new System.NotImplementedException();
     }
 }
