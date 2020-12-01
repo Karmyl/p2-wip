@@ -8,6 +8,7 @@ public class GameOverScore : MonoBehaviour
     //private static Text text;
     private int displayScore;
     public Text scoreUI;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +18,8 @@ public class GameOverScore : MonoBehaviour
 
     private IEnumerator ScoreUpdater()
     {
-        bool isDone = true;
-        while (isDone)
+        bool isDone = false;
+        while (!isDone)
         {
             if (displayScore < Score.score)
             {
@@ -28,10 +29,15 @@ public class GameOverScore : MonoBehaviour
             } else
             {
                 FindObjectOfType<AudioManager>().PlaySound("chickenGetsHome");
-                isDone = false;
+                isDone = true;
             }
             yield return new WaitForSeconds(0.1f);
         }
 
+        // Save scores to database
+        Player player = DatabaseLoader.GetCurrentPlayer();
+        player.Score += Score.score;
+        DatabaseLoader.SaveCurrentPlayer();
+        Debug.Log("id: " + player.Id + ", name: " + player.PlayerName + "avatarId: " + player.AvatarId + ", score: " + player.Score);
     }
 }

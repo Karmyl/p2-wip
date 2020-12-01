@@ -7,14 +7,30 @@ using System;
 
 public class DatabaseLoader : MonoBehaviour
 {
-    private static Player currentPlayer;
+    private static Player currentPlayer = null;
     private string tableName = "Pelaajat";
     private string databaseName = "Userdata.db";
-    
+
+    // Static attributes for accessing database
+    public static string staticTableName;
+    public static string staticDatabaseName;
+
     // Get current loaded Player
     public static Player GetCurrentPlayer()
     {
         return DatabaseLoader.currentPlayer;
+    }
+
+    public static void SaveCurrentPlayer()
+    {
+        Player player = DatabaseLoader.GetCurrentPlayer();
+        IDbConnection dbconn = new SqliteConnection(GetStaticConnectionString());
+        dbconn.Open();
+        IDbCommand cmd = dbconn.CreateCommand();
+        cmd.CommandText = "UPDATE " + staticTableName + " SET kokonaispisteet = " + player.Score + " WHERE id = " + player.Id;
+        cmd.ExecuteNonQuery();
+        cmd.Dispose();
+        dbconn.Close();
     }
 
     // Start is called before the first frame update
@@ -22,6 +38,8 @@ public class DatabaseLoader : MonoBehaviour
     {
         // Allocate new static Player-instance
         DatabaseLoader.currentPlayer = new Player();
+        DatabaseLoader.staticDatabaseName = databaseName;
+        DatabaseLoader.staticTableName = tableName;
 
         // Create new database or join to existing one.
         if (CheckExistingDatabase())
@@ -192,6 +210,12 @@ public class DatabaseLoader : MonoBehaviour
     private string GetConnectionString()
     {
         string s = "URI=file:" + Application.dataPath + "/" + databaseName;
+        return s;
+    }
+
+    public static string GetStaticConnectionString()
+    {
+        string s = "URI=file:" + Application.dataPath + "/" + staticDatabaseName;
         return s;
     }
 
