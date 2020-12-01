@@ -8,8 +8,8 @@ using System;
 public class DatabaseLoader : MonoBehaviour
 {
     private static Player currentPlayer = null;
-    private static string tableName = "Pelaajat";
-    private static string databaseName = "Userdata.db";
+    private static readonly string tableName = "Pelaajat";
+    private static readonly string databaseName = "Userdata.db";
 
     // Create new player to database and set it as current player
     public static void CreateNewPlayer(string name, int avatarIndex)
