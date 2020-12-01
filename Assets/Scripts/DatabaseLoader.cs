@@ -53,6 +53,7 @@ public class DatabaseLoader : MonoBehaviour
         newPlayer.PlayerName = name;
         newPlayer.AvatarId = avatarIndex;
         newPlayer.Score = 0;
+
         DatabaseLoader.SetCurrentPlayer(newPlayer);
     }
 
@@ -66,6 +67,7 @@ public class DatabaseLoader : MonoBehaviour
     public static void SetCurrentPlayer(Player player)
     {
         DatabaseLoader.currentPlayer = player;
+        PlayerPrefs.SetInt("lastId", player.Id);
     }
 
     public static void SaveCurrentPlayer()
@@ -119,7 +121,9 @@ public class DatabaseLoader : MonoBehaviour
             if(lastId != 0)
             {
                 // Reload player with last played id
-                DatabaseLoader.currentPlayer = GetPlayerWithId(lastId);
+                Player lastActivePlayer = GetPlayerWithId(lastId);
+                DatabaseLoader.SetCurrentPlayer(lastActivePlayer);
+                Debug.Log("Pelaaja, id: " + lastActivePlayer.Id + ", nimi: " + lastActivePlayer.PlayerName + ", avatarId: " + lastActivePlayer.AvatarId + ", score: " + lastActivePlayer.Score);
             }
         }
         else
@@ -136,7 +140,6 @@ public class DatabaseLoader : MonoBehaviour
     {
         
     }
-
 
     // Check if database already exists.
     // Return true if database is already created, otherwise return false;
