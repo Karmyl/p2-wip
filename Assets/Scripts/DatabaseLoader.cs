@@ -49,26 +49,26 @@ public class DatabaseLoader : MonoBehaviour
         newPlayer.PlayerName = name;
         newPlayer.AvatarId = avatarIndex;
         newPlayer.Score = 0;
-
-        DatabaseLoader.SetCurrentPlayer(newPlayer);
+        
+        SetCurrentPlayer(newPlayer);
     }
 
     // Get current loaded Player
     public static Player GetCurrentPlayer()
     {
-        return DatabaseLoader.currentPlayer;
+        return currentPlayer;
     }
 
     // Set current active player
     public static void SetCurrentPlayer(Player player)
     {
-        DatabaseLoader.currentPlayer = player;
+        currentPlayer = player;
         PlayerPrefs.SetInt("lastId", player.Id);
     }
 
     public static void SaveCurrentPlayer()
     {
-        Player player = DatabaseLoader.GetCurrentPlayer();
+        Player player = GetCurrentPlayer();
         IDbConnection dbconn = new SqliteConnection(GetConnectionString());
         dbconn.Open();
         IDbCommand cmd = dbconn.CreateCommand();
@@ -102,6 +102,23 @@ public class DatabaseLoader : MonoBehaviour
         return players;
     }
 
+    public static void DeletePlayer(Player player)
+    {
+        IDbConnection dbconn = new SqliteConnection(GetConnectionString());
+        dbconn.Open();
+        try
+        {
+            IDbCommand cmd = CreateCommand("DELETE FROM " + tableName + " WHERE id = " + player.Id, dbconn);
+            cmd.ExecuteNonQuery();
+            cmd.Dispose();
+            dbconn.Close();
+        }
+        catch
+        {
+            Debug.Log("Ei onnistunut");
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -116,7 +133,7 @@ public class DatabaseLoader : MonoBehaviour
             {
                 // Reload player with last played id
                 Player lastActivePlayer = GetPlayerWithId(lastId);
-                DatabaseLoader.SetCurrentPlayer(lastActivePlayer);
+                SetCurrentPlayer(lastActivePlayer);
                 Debug.Log("Pelaaja, id: " + lastActivePlayer.Id + ", nimi: " + lastActivePlayer.PlayerName + ", avatarId: " + lastActivePlayer.AvatarId + ", score: " + lastActivePlayer.Score);
             }
         }
@@ -126,7 +143,7 @@ public class DatabaseLoader : MonoBehaviour
             CreateTable(tableName);
             int newPlayerId = AddNewPlayer("Pelaaja", 0, 0);
             PlayerPrefs.SetInt("lastId", newPlayerId);
-            DatabaseLoader.currentPlayer = GetPlayerWithId(newPlayerId);
+            currentPlayer = GetPlayerWithId(newPlayerId);
         }
     }
 
@@ -235,21 +252,6 @@ public class DatabaseLoader : MonoBehaviour
         return player;
     }
 
-    private bool RemovePlayer(int id)
-    {
-        bool result = true;
-        IDbConnection dbconn = new SqliteConnection(GetConnectionString());
-        dbconn.Open();
-
-        // NOTE: Should check if id exists?
-        IDbCommand cmd = CreateCommand("DELETE FROM " + tableName + " WHERE id = " + id, dbconn);
-        cmd.ExecuteNonQuery();
-        cmd.Dispose();
-        dbconn.Close();
-        return result;
-    }
-
-    // Print whole database.
     void PrintPlayers()
     {
         IDbConnection dbconn = new SqliteConnection(GetConnectionString());
