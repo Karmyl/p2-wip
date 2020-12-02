@@ -7,6 +7,7 @@ public class PathFollower : MonoBehaviour
     // Dinosaur reference comes here
     public GameObject dinosaur = null;
     public GameObject chicken = null;
+    public ParticleSystem particleSystem = null;
 
     // Start is called before the first frame update
     public Transform[] waypoints;
@@ -122,7 +123,13 @@ public class PathFollower : MonoBehaviour
                 Debug.Log("Dino osui kanaan");
 
                 // Dinosaur got Chicken
-                Destroy(collision.other.gameObject);
+                //Destroy(collision.other.gameObject);
+
+                //Feather animation code, not optimal but works
+                collision.other.gameObject.GetComponent<PathFollower>().enabled = false;
+                collision.other.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+                collision.other.gameObject.GetComponentInChildren<ParticleSystem>().Play();
+                //particleSystem.Play();
                 this.enabled = false;
 
                 // Reset velocity for RigidBody
