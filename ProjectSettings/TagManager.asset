@@ -10,6 +10,10 @@ TagManager:
   - Block
   - Ground
   - Path
+  - LaneRed
+  - LaneBlue
+  - LaneYellow
+  - LaneGreen
   layers:
   - Default
   - TransparentFX

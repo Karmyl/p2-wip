@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class BlockDraggingLevel2 : MonoBehaviour
 {
-    public int blockID;
-    private bool hasBeenUsed = false;
-
+    public int blockType = 0;
+    private bool isScaled = false;
     private bool isDragged = false;
     private bool startedDragging = false;
     private bool endedDragging = false;
@@ -23,7 +22,7 @@ public class BlockDraggingLevel2 : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if(isDragged)
+            if (isDragged)
             {
                 // Started dragging
                 Debug.Log("1");
@@ -37,10 +36,9 @@ public class BlockDraggingLevel2 : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            if(isDragged)
+            if (isDragged)
             {
                 // Ended dragging
-                Debug.Log("2");
 
                 // Restore initial scale
                 this.transform.localScale = initialScale;
@@ -70,23 +68,63 @@ public class BlockDraggingLevel2 : MonoBehaviour
                 this.transform.position = hoveredPosition;
                 this.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
                 isDragged = true;
+
+                isScaled = false;
+                this.transform.localScale = initialScale;
             }
         }
     }
 
-    //Check for collision in the correct lane
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (blockID == collision.gameObject.GetComponent<BlockDetection>().allowedBlockID && !hasBeenUsed)
+        Debug.Log(this.tag);
+        bool isOnCorrectLane = false;
+        string laneTag = collision.gameObject.tag;
+        switch (blockType)
         {
-            hasBeenUsed = true;
-            Score.AddScore(1);
+            // Block = yellow
+            case 1:
+                if (laneTag.CompareTo("LaneYellow") == 0)
+                {
+                    isOnCorrectLane = true;
+                }
+                break;
+
+            // Block = red
+            case 2:
+                if (laneTag.CompareTo("LaneRed") == 0)
+                {
+                    isOnCorrectLane = true;
+                }
+                break;
+
+            // Block = green
+            case 3:
+                if (laneTag.CompareTo("LaneGreen") == 0)
+                {
+                    isOnCorrectLane = true;
+                }
+                break;
+
+            // Block = blue
+            case 4:
+                if (laneTag.CompareTo("LaneBlue") == 0)
+                {
+                    isOnCorrectLane = true;
+                }
+                break;
+
+            default:
+                break;
         }
-    }
 
-
-void FixedUpdate()
-    {
-
+        if (isOnCorrectLane)
+        {
+            if (!isScaled)
+            {
+                this.transform.localScale *= 2.0f;
+                isScaled = true;
+            }
+        }
     }
 }
