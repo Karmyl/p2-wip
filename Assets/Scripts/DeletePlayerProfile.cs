@@ -3,17 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopulateDropdown : MonoBehaviour
+public class DeletePlayerProfile : MonoBehaviour
 {
     public Dropdown dropdown;
-    private List<Player> players = null;
     private int selectedPlayerIndex = -1;
-
-    public void Dropdown_IndexChanged(int index)
-    {
-        Debug.Log(index);
-        selectedPlayerIndex = index;
-    }
+    private List<Player> players = null;
 
     // Start is called before the first frame update
     void Start()
@@ -25,9 +19,8 @@ public class PopulateDropdown : MonoBehaviour
             names.Add(p.PlayerName);
         }
 
-        // Select first item in list if names-array contains at least
-        // one item
-        if(names.Count > 0)
+        // Do not allow deleting only player in database.
+        if(names.Count > 1)
         {
             selectedPlayerIndex = 0;
         }
@@ -35,11 +28,17 @@ public class PopulateDropdown : MonoBehaviour
         dropdown.AddOptions(names);
     }
 
-    public void ApplyPlayerChange()
+    public void UpdateSelectedPlayerIndex(int index)
     {
-        if (selectedPlayerIndex != -1)
+        Debug.Log("index: " + index);
+        selectedPlayerIndex = index;
+    }
+
+    public void DeleteSelectedPlayerProfile()
+    {
+        if(selectedPlayerIndex != -1)
         {
-            DatabaseLoader.SetCurrentPlayer(players[selectedPlayerIndex]);
+            DatabaseLoader.DeletePlayer(players[selectedPlayerIndex]);
             Application.LoadLevel("Profiles");
         }
     }
