@@ -10,11 +10,13 @@ public class BlockDraggingLevel2 : MonoBehaviour
     private bool startedDragging = false;
     private bool endedDragging = false;
     private Vector3 initialScale;
+    AudioManager audiomanager;
 
     // Start is called before the first frame update
     void Start()
     {
         initialScale = transform.localScale;
+        audiomanager = FindObjectOfType<AudioManager>();
     }
 
     // Update is called once per frame
@@ -116,6 +118,7 @@ public class BlockDraggingLevel2 : MonoBehaviour
 
             default:
                 break;
+                
         }
 
         if (isOnCorrectLane)
@@ -124,7 +127,15 @@ public class BlockDraggingLevel2 : MonoBehaviour
             {
                 this.transform.localScale *= 2.0f;
                 isScaled = true;
+                audiomanager.PlaySound("palikka_kasvaa");
+
             }
+        } else
+        {
+             audiomanager.PlaySound("palikka1");
+
         }
+        
     }
 }
+

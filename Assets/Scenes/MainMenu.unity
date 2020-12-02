@@ -791,7 +791,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 830abbcfd04edfa4684b93a87c91d559, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.501
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -938,25 +938,31 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: kana_pollahtaa
     clip: {fileID: 8300000, guid: 1101cadada66dc2458d83607d594531c, type: 3}
-    volume: 0.561
+    volume: 0.515
     pitch: 0.1
     loop: 0
     source: {fileID: 0}
   - name: palikka1
     clip: {fileID: 8300000, guid: 5c469f0e00987b5459a4f1c2c7be7653, type: 3}
-    volume: 0.561
+    volume: 0.679
     pitch: 0.1
     loop: 0
     source: {fileID: 0}
   - name: palikka2
     clip: {fileID: 8300000, guid: 49be718d9b43f6544a9b91742a600af9, type: 3}
-    volume: 0.561
+    volume: 0.673
     pitch: 0.1
     loop: 0
     source: {fileID: 0}
   - name: palikka3
     clip: {fileID: 8300000, guid: b8e8afa1c595e7546912b25fb1fd9af8, type: 3}
-    volume: 0.561
+    volume: 0.673
+    pitch: 0.1
+    loop: 0
+    source: {fileID: 0}
+  - name: palikka_kasvaa
+    clip: {fileID: 8300000, guid: 231922e5f29a2aa4b871a1849e9649f6, type: 3}
+    volume: 0.625
     pitch: 0.1
     loop: 0
     source: {fileID: 0}
