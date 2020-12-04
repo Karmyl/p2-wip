@@ -175,7 +175,8 @@ public class PathFollower : MonoBehaviour
                 {
                     if (!isSlowed)
                     {
-                        isSlowed = false;
+                        Debug.Log("Dino hidastuu");
+                        isSlowed = true;
                         slowedAccumulator = 0.0f;
                     }
                 }
