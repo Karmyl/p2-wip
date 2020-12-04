@@ -907,8 +907,8 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: coin collected
-    clip: {fileID: 8300000, guid: 4ee91602222cf2b4885b727632a5bdf1, type: 3}
-    volume: 0.402
+    clip: {fileID: 8300000, guid: e36e369efd7c0944daf75799d636bc49, type: 3}
+    volume: 0.527
     pitch: 0.1
     loop: 0
     source: {fileID: 0}
