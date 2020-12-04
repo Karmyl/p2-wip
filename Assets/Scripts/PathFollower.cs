@@ -166,10 +166,6 @@ public class PathFollower : MonoBehaviour
             {
                 Debug.Log("Dino osui palikkaan");
 
-                // Sound effect here
-                audiomanager.PlaySound("dino_osuu_palikkaan");
-                // Feathers animation here 
-
                 //Dinosaur slowing
                 if (collision.other.GetComponent<BlockDraggingLevel2>().GetIsScaled())
                 {
@@ -180,6 +176,10 @@ public class PathFollower : MonoBehaviour
                         slowedAccumulator = 0.0f;
                     }
                 }
+
+                // Sound effect here
+                audiomanager.PlaySound("dino_osuu_palikkaan");
+                // Feathers animation here 
             }
         }
 
