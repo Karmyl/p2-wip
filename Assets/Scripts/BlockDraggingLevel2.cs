@@ -9,8 +9,15 @@ public class BlockDraggingLevel2 : MonoBehaviour
     private bool isDragged = false;
     private bool startedDragging = false;
     private bool endedDragging = false;
+    private bool isOnCorrectLane = false;
     private Vector3 initialScale;
     AudioManager audiomanager;
+
+    //GetIsScaled
+    public bool GetIsScaled()
+    {
+        return isScaled;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +87,7 @@ public class BlockDraggingLevel2 : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         Debug.Log(this.tag);
-        bool isOnCorrectLane = false;
+        //bool isOnCorrectLane = false;
         string laneTag = collision.gameObject.tag;
         switch (blockType)
         {

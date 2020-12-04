@@ -18,6 +18,11 @@ public class PathFollower : MonoBehaviour
     // Rotation speed when changing to new heading
     public float rotationSpeed = 10.0f;
 
+    public float slowedDurationInSeconds = 1.0f;
+    public float slowingCoefficient = 0.5f;
+    private bool isSlowed = false;
+    private float slowedAccumulator = 0.0f;
+
     // Total length of path
     private float totalPathLength;
 
@@ -74,8 +79,25 @@ public class PathFollower : MonoBehaviour
     {
         if(currentWaypointIndex < (maxWaypointIndex - 1))
         {
-            accumulator += Time.deltaTime;
+            if (isSlowed)
+            {
+                // Slowed down moving
+                slowedAccumulator += Time.deltaTime;
+                if (slowedAccumulator > slowedDurationInSeconds)
+                {
+                    isSlowed = false;
+                }
+
+                accumulator += Time.deltaTime * slowingCoefficient;
+            }
+            else
+            {
+                // Normal moving
+                accumulator += Time.deltaTime;
+            }
+
             float durationForSegment = segmentDurationInSeconds[currentWaypointIndex];
+
             if (accumulator < durationForSegment)
             {
                 // Orient GameObject if not at the end of path
@@ -147,6 +169,16 @@ public class PathFollower : MonoBehaviour
                 // Sound effect here
                 audiomanager.PlaySound("dino_osuu_palikkaan");
                 // Feathers animation here 
+
+                //Dinosaur slowing
+                if (collision.other.GetComponent<BlockDraggingLevel2>().GetIsScaled())
+                {
+                    if (!isSlowed)
+                    {
+                        isSlowed = false;
+                        slowedAccumulator = 0.0f;
+                    }
+                }
             }
         }
 
