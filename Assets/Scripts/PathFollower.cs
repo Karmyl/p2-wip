@@ -177,6 +177,7 @@ public class PathFollower : MonoBehaviour
                 {
                     if (!isSlowed)
                     {
+                        Score.AddScore(1);
                         isSlowed = true;
                         slowedAccumulator = 0.0f;
                     }
@@ -190,7 +191,7 @@ public class PathFollower : MonoBehaviour
         // Chicken collision handling
         if (this.CompareTag("Kana"))
         {
-            if(collision.collider.gameObject.CompareTag("Koti"))
+            if (collision.collider.gameObject.CompareTag("Koti"))
             {
                 if(dinosaur != null)
                 {
@@ -205,6 +206,9 @@ public class PathFollower : MonoBehaviour
                     rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
                     rb.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
                 }
+
+                // Hide chicken
+                this.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
 
                 // Sound effect here
                 audiomanager.PlaySound("chickenGetsHome");

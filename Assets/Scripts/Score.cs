@@ -55,4 +55,15 @@ public class Score : MonoBehaviour
             Score.text.text = Score.score.ToString();
         }
     }
+
+    public static void ResetScore()
+    {
+        score = 0;
+        GameObject go = GameObject.Find("ScoreText");
+        if (go)
+        {
+            Score.text = go.GetComponent<Text>();
+            Score.text.text = Score.score.ToString();
+        }
+    }
 }
