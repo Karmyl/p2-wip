@@ -21,31 +21,38 @@ public class Player
         set { playerName = value; }
     }
 
+    public int AvatarId
+    {
+        get { return avatarId; }
+        set { avatarId = value; }
+    }
+
     public int Score
     {
         get { return score;  }
         set { score = value; }
     }
 
-    public int AvatarId
-    {
-        get { return avatarId;  }
-        set { avatarId = value; }
-    }
 
     public Player()
     {
         this.id = 0;
         this.playerName = "";
-        this.score = 0;
         this.avatarId = 0;
+        this.score = 0;
     }
 
     public Player(int id, string playerName, int score, int avatarId)
     {
         this.id = id;
         this.playerName = playerName;
-        this.score = score;
         this.avatarId = avatarId;
+        this.score = score;
+    }
+
+    public string GetAsString()
+    {
+        string s = "" + id + "#" + playerName + "#" + avatarId + "#" + score;
+        return s;
     }
 }
