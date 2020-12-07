@@ -31,6 +31,7 @@ public class DatabaseLoader : MonoBehaviour
                 int avatarId = Int32.Parse(tokens[2]);
                 Player newPlayer = new Player(id, name, score, avatarId);
                 players.Add(newPlayer);
+                SetCurrentPlayer(newPlayer);
             }
         }
         else
@@ -49,7 +50,7 @@ public class DatabaseLoader : MonoBehaviour
             sw.Write("\n");
             sw.Close();
             PlayerPrefs.SetInt("lastId", 1);
-            currentPlayer = newPlayer;
+            SetCurrentPlayer(newPlayer);
         }
     }
 
