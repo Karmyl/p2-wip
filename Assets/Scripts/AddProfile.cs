@@ -1,28 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class AddProfile : MonoBehaviour
 {
-    public InputField input;
+    private string playerName = null;
     private int selectedAvatarIndex = 0;
 
     public void SetSelectedAvatar(int avatarIndex)
     {
         selectedAvatarIndex = avatarIndex;
-        Debug.Log(selectedAvatarIndex);
+    }
+
+    public void SetPlayerName(string s)
+    {
+        if(s.Length > 0)
+        {
+            playerName = s;
+        }
     }
 
     public void AddNewProfile()
     {
-        Debug.Log(input.text);
-        if (input.text.Length > 0 && selectedAvatarIndex != 0)
+        bool isNameSet = (playerName != null);
+        bool isAvatarIndexSet = (selectedAvatarIndex != 0);
+        if (isNameSet && isAvatarIndexSet)
         {
-            DatabaseLoader.CreateNewPlayer(input.text, selectedAvatarIndex);
+            Debug.Log(playerName);
+            DatabaseLoader.CreateNewPlayer(playerName, selectedAvatarIndex);
+            SceneManager.LoadScene("Profiles");
         }
-        Application.LoadLevel("Profiles");
-
-
     }
 }
