@@ -8,12 +8,10 @@ public class BlockDraggingLevel2 : MonoBehaviour
     private bool isScaled = false;
     private bool isDragged = false;
     private bool startedDragging = false;
-    private bool endedDragging = false;
     private bool isOnCorrectLane = false;
     private Vector3 initialScale;
     AudioManager audiomanager;
 
-    //GetIsScaled
     public bool GetIsScaled()
     {
         return isScaled;
@@ -33,13 +31,9 @@ public class BlockDraggingLevel2 : MonoBehaviour
         {
             if (isDragged)
             {
-                // Started dragging
-                Debug.Log("1");
-
-                // Set scale
+                // Continue to drag object
                 this.GetComponent<Rigidbody>().useGravity = false;
                 this.GetComponent<Rigidbody>().isKinematic = true;
-                startedDragging = false;
             }
         }
 
@@ -48,7 +42,6 @@ public class BlockDraggingLevel2 : MonoBehaviour
             if (isDragged)
             {
                 // Ended dragging
-
                 // Restore initial scale
                 this.transform.localScale = initialScale;
                 this.GetComponent<Rigidbody>().useGravity = true;
@@ -70,24 +63,25 @@ public class BlockDraggingLevel2 : MonoBehaviour
             // Check intersection with only layer 8 (Ground)
             if (Physics.Raycast(ray, out hit, 200.0f, layerMask))
             {
-                isDragged = true;
                 Vector3 intersectionPoint = hit.point;
                 Vector3 offsetFromGround = new Vector3(0.0f, 5.0f, 0.0f);
                 Vector3 hoveredPosition = intersectionPoint + offsetFromGround;
                 this.transform.position = hoveredPosition;
                 this.GetComponent<MeshRenderer>().shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.On;
-                isDragged = true;
-
-                isScaled = false;
                 this.transform.localScale = initialScale;
+
+                // Reset velocities
+                this.GetComponent<Rigidbody>().angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
+                this.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+
+                isDragged = true;
+                isScaled = false;
             }
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(this.tag);
-        //bool isOnCorrectLane = false;
         string laneTag = collision.gameObject.tag;
         switch (blockType)
         {
@@ -135,14 +129,11 @@ public class BlockDraggingLevel2 : MonoBehaviour
                 this.transform.localScale *= 2.0f;
                 isScaled = true;
                 audiomanager.PlaySound("palikka_kasvaa");
-
             }
         } else
         {
              audiomanager.PlaySound("palikka1");
-
-        }
-        
+        }    
     }
 }
 

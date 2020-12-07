@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PathFollower : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PathFollower : MonoBehaviour
 
     public float slowedDurationInSeconds = 1.0f;
     public float slowingCoefficient = 0.5f;
+
     private bool isSlowed = false;
     private float slowedAccumulator = 0.0f;
 
@@ -132,46 +134,49 @@ public class PathFollower : MonoBehaviour
             // End of path
             //Debug.Log("End of path");
         }
+
+        if(this.CompareTag("Kana"))
+        {
+            // Check if chicken is eaten (== no MeshRenderer active)
+            if(this.GetComponentInChildren<SkinnedMeshRenderer>().enabled == false)
+            {
+                if(this.GetComponentInChildren<ParticleSystem>().IsAlive() == false)
+                {
+                    // Feather animation just ended, move to next scene
+                    SceneManager.LoadScene("GameOver");
+                }
+            }
+        }
     }
 
     // Handle collisions
     void OnCollisionEnter(Collision collision)
     {
-        // Dinosaur collision checking
+        // Dinosaur collision handling
         if (this.CompareTag("Dino"))
         {
-            if (collision.other.gameObject.CompareTag("Kana"))
+            if (collision.collider.gameObject.CompareTag("Kana"))
             {
-                Debug.Log("Dino osui kanaan");
+                // Dinosaur colliding with chicken
+                chicken.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
+                chicken.GetComponentInChildren<ParticleSystem>().Play();
 
-                // Dinosaur got Chicken
-                //Destroy(collision.other.gameObject);
-
-                //Feather animation code, not optimal but works
-                collision.other.gameObject.GetComponent<PathFollower>().enabled = false;
-                collision.other.gameObject.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
-                collision.other.gameObject.GetComponentInChildren<ParticleSystem>().Play();
-                //particleSystem.Play();
+                // Reset velocity for RigidBody and stop animating dinosaur
                 this.enabled = false;
-
-                // Reset velocity for RigidBody
                 this.GetComponent<Rigidbody>().AddForce(Vector3.zero);
                 this.GetComponent<Rigidbody>().isKinematic = true;
+                this.GetComponentInChildren<Animator>().enabled = false;
 
                 // Sound effect here
                 audiomanager.PlaySound("chickenGetsEaten");
-                // Feathers animation here 
-
-            } else if (collision.other.gameObject.CompareTag("Block"))
+            }
+            else if(collision.collider.gameObject.CompareTag("Block"))
             {
-                Debug.Log("Dino osui palikkaan");
-
-                //Dinosaur slowing
-                if (collision.other.GetComponent<BlockDraggingLevel2>().GetIsScaled())
+                // Dinosaur slowing
+                if(collision.collider.gameObject.GetComponent<BlockDraggingLevel2>().GetIsScaled())
                 {
                     if (!isSlowed)
                     {
-                        Debug.Log("Dino hidastuu");
                         isSlowed = true;
                         slowedAccumulator = 0.0f;
                     }
@@ -179,30 +184,33 @@ public class PathFollower : MonoBehaviour
 
                 // Sound effect here
                 audiomanager.PlaySound("dino_osuu_palikkaan");
-                // Feathers animation here 
             }
         }
 
-        // Chicken collision checking
+        // Chicken collision handling
         if (this.CompareTag("Kana"))
         {
-            if (collision.other.gameObject.CompareTag("Koti"))
+            if(collision.collider.gameObject.CompareTag("Koti"))
             {
-                Debug.Log("Pääsin kotiin");
-                // Chicken got home
-                if (chicken != null)
-                {
-                    Destroy(chicken);
-                }
-
                 if(dinosaur != null)
                 {
                     // Stop dinosaur
                     dinosaur.GetComponent<PathFollower>().enabled = false;
+                    dinosaur.GetComponentInChildren<Animator>().enabled = false;
+
+                    // Reset velocities and reset animation
+                    Rigidbody rb = dinosaur.GetComponent<Rigidbody>();
+                    rb.useGravity = false;
+                    rb.isKinematic = true;
+                    rb.velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                    rb.angularVelocity = new Vector3(0.0f, 0.0f, 0.0f);
                 }
 
                 // Sound effect here
                 audiomanager.PlaySound("chickenGetsHome");
+
+                // Feather animation just ended, move to next scene
+                SceneManager.LoadScene("GameOver");
             }
         }
     }
