@@ -43,4 +43,16 @@ public class Score : MonoBehaviour
           Score.text.text = Score.score.ToString();
         }
     }
+
+    // Find ScoreText component and reduce score if chicken gets eaten
+    public static void RemoveScore(int value)
+    {
+        Score.score -= value;
+        GameObject go = GameObject.Find("ScoreText");
+        if (go)
+        {
+            Score.text = go.GetComponent<Text>();
+            Score.text.text = Score.score.ToString();
+        }
+    }
 }
