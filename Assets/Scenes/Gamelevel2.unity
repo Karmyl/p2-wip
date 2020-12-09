@@ -3225,7 +3225,7 @@ MonoBehaviour:
   - {fileID: 1515350482}
   - {fileID: 1638360260}
   - {fileID: 1995706647}
-  totalPathDurationInSeconds: 30
+  totalPathDurationInSeconds: 32
   rotationSpeed: 0.02
   slowedDurationInSeconds: 1
   slowingCoefficient: 0.5
@@ -3452,7 +3452,7 @@ MonoBehaviour:
   - {fileID: 1515350482}
   - {fileID: 1638360260}
   - {fileID: 1995706647}
-  totalPathDurationInSeconds: 25
+  totalPathDurationInSeconds: 30
   rotationSpeed: 0.02
   slowedDurationInSeconds: 1
   slowingCoefficient: 0.5

@@ -59,7 +59,10 @@ public class DinoMoving : MonoBehaviour
         {
             Debug.Log("Tormays tapahtunut!");
             Score.RemoveChickenInHome();
-            Score.RemoveScore(5);
+            if (Score.score >= 5)
+            {
+                Score.RemoveScore(5);
+            }
             Destroy(collision.gameObject);
             speed = 0.0f;
             audiomanager.PlaySound("chickenGetsEaten");
