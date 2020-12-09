@@ -149,6 +149,13 @@ public class PathFollower : MonoBehaviour
         }
     }
 
+    public void SetSlowedState(bool state, float durationInSeconds)
+    {
+        isSlowed = state;
+        slowedAccumulator = 0.0f;
+        slowedDurationInSeconds = durationInSeconds;
+    }
+
     // Handle collisions
     void OnCollisionEnter(Collision collision)
     {
