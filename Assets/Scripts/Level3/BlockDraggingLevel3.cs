@@ -67,7 +67,8 @@ public class BlockDraggingLevel3 : MonoBehaviour
                 {
                     // Slow down dino
                     // Triggers every frame?
-                    targetDino.GetComponent<PathFollower>().SetSlowedState(true, 30.0f);
+                    targetDino.GetComponent<PathFollower>().SetSlowedState(true, 2.0f);
+                    StartCoroutine(Testi());
                 }
             }
         }
@@ -107,7 +108,7 @@ public class BlockDraggingLevel3 : MonoBehaviour
             Transform blockSlotTransform = collision.collider.transform.Find("DinoBlockSlot");
             if(blockSlotTransform != null)
             {
-                int allowedBlockType = currentBlockSlot.GetComponent<RandomizeSlotBlock>().GetAllowedBlockType();
+                int allowedBlockType = currentBlockSlot.GetComponentInChildren<DinoHotBar>().GetBlockType();
                 if (this.blockType == allowedBlockType)
                 {
                     this.transform.position = new Vector3(0.0f, 0.0f, 0.0f);
@@ -131,5 +132,11 @@ public class BlockDraggingLevel3 : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator Testi()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Destroy(this.gameObject);
     }
 }
