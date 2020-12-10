@@ -15,7 +15,7 @@ public class SwitchMusicOnLoad : MonoBehaviour
         {
             audiomanager.ChangeBackgroundMusic(trackName);
 
-            if (trackName == "Game_Over_BGMusic")
+            if (trackName == "GameOver")
             {
                 audiomanager.backgroundMusic.loop = false;
             } else 

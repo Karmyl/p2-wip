@@ -890,27 +890,27 @@ MonoBehaviour:
   musics:
   - name: MainMenu
     clip: {fileID: 8300000, guid: 830abbcfd04edfa4684b93a87c91d559, type: 3}
-    volume: 0.503
+    volume: 0.523
     loop: 1
     source: {fileID: 0}
-  - name: GameLevel
+  - name: Gamelevel
     clip: {fileID: 8300000, guid: 0cc3e1e1a6f336f4bb1a0757640382f8, type: 3}
     volume: 0.521
     loop: 1
     source: {fileID: 0}
-  - name: GameLevel2
+  - name: Gamelevel2
     clip: {fileID: 8300000, guid: ddab7c094666368448a858c155ec03af, type: 3}
-    volume: 0.52
+    volume: 0.342
     loop: 1
     source: {fileID: 0}
-  - name: GameLevel3
+  - name: Gamelevel3
     clip: {fileID: 8300000, guid: 6694243208319aa4d8d3d1f56db52f61, type: 3}
-    volume: 0.454
+    volume: 0.204
     loop: 1
     source: {fileID: 0}
   - name: GameOver
     clip: {fileID: 8300000, guid: 76ace0e5c876b9943a6da842103f4e42, type: 3}
-    volume: 0
+    volume: 0.533
     loop: 0
     source: {fileID: 0}
   sounds:

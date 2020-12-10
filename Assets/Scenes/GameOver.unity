@@ -298,7 +298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6629a164cc2d154995a6326a5809c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newTrack: {fileID: 8300000, guid: 76ace0e5c876b9943a6da842103f4e42, type: 3}
+  trackName: GameOver
 --- !u!4 &186574227
 Transform:
   m_ObjectHideFlags: 0

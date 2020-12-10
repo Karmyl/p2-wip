@@ -18,7 +18,7 @@ public class MenuScript : MonoBehaviour
         {
             audiomanager.PlaySound("chickens");
         }
-        else if (sceneName == "MainMenu")
+        else if (sceneName == "MainMenu" || sceneName == "ChangeLevel")
         {
             audiomanager.StopSound("chickens");
         } 

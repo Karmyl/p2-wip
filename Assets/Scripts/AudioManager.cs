@@ -62,6 +62,8 @@ public class AudioManager : MonoBehaviour
     {
         Music m = Array.Find(musics, music => music.name == name);
         backgroundMusic = m.source;
+        backgroundMusic.name = m.name;
+        backgroundMusic.clip = m.clip;
         Debug.Log(m.name);
         //m.source.Play();
     }
@@ -130,18 +132,20 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeBackgroundMusic(string music)
     {
-        if(backgroundMusic.clip.name == music)//Continue without changing music
+        Debug.Log(backgroundMusic.name + music);
+        if(backgroundMusic.name == music)//Continue without changing music
         {
             Debug.Log("Same audioclip");
             return;
         } else //stop current music and start new bgmusic 
         {           
-            Debug.Log(backgroundMusic.clip.name);
+            Debug.Log(backgroundMusic.name);
+            
             backgroundMusic.Stop();
             PlayMusic(music);
             backgroundMusic.Play();
 
-            if (backgroundMusic.clip.name == "Game_Over_BGMusic")
+            if (backgroundMusic.name == "GameOver")
             {
                 backgroundMusic.loop = false;
             }
