@@ -786,7 +786,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 554902227}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 830abbcfd04edfa4684b93a87c91d559, type: 3}
@@ -887,6 +887,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a70a68ef64512142862d385a650653a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musics:
+  - name: MainMenu
+    clip: {fileID: 8300000, guid: 830abbcfd04edfa4684b93a87c91d559, type: 3}
+    volume: 0.503
+    loop: 1
+    source: {fileID: 0}
+  - name: GameLevel
+    clip: {fileID: 8300000, guid: 0cc3e1e1a6f336f4bb1a0757640382f8, type: 3}
+    volume: 0.521
+    loop: 1
+    source: {fileID: 0}
+  - name: GameLevel2
+    clip: {fileID: 8300000, guid: ddab7c094666368448a858c155ec03af, type: 3}
+    volume: 0.52
+    loop: 1
+    source: {fileID: 0}
+  - name: GameLevel3
+    clip: {fileID: 8300000, guid: 6694243208319aa4d8d3d1f56db52f61, type: 3}
+    volume: 0.454
+    loop: 1
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 76ace0e5c876b9943a6da842103f4e42, type: 3}
+    volume: 0
+    loop: 0
+    source: {fileID: 0}
   sounds:
   - name: buttonSoundFX
     clip: {fileID: 8300000, guid: 2846aac76f173184eaf05e62318c86d1, type: 3}
@@ -1197,6 +1223,7 @@ GameObject:
   - component: {fileID: 1017815091}
   - component: {fileID: 1017815090}
   - component: {fileID: 1017815089}
+  - component: {fileID: 1017815092}
   m_Layer: 5
   m_Name: ExitButton
   m_TagString: Untagged
@@ -1278,6 +1305,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1017815092}
+        m_MethodName: DeleteOwnPlayerPrefs
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1017815090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,6 +1353,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1017815087}
   m_CullTransparentMesh: 0
+--- !u!114 &1017815092
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017815087}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2b3d60d4eccf3a42afdb817d159ae0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1202964519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1638,7 +1688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6629a164cc2d154995a6326a5809c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newTrack: {fileID: 8300000, guid: 830abbcfd04edfa4684b93a87c91d559, type: 3}
+  trackName: MainMenu
 --- !u!4 &1733120282
 Transform:
   m_ObjectHideFlags: 0

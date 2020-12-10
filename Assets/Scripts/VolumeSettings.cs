@@ -23,21 +23,19 @@ public class VolumeSettings : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
     }
 
     private void Awake()
     {
         //Get playerprefs to see if players first play
         music = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
-        backgroundMusic = music.backgroundMusic;
 
         firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
 
         if (firstPlayValue == 0)//set values
         {
-            musicVolumeValue = .5f;
-            fxVolumeValue = .5f;
+            musicVolumeValue = 1.0f;
+            fxVolumeValue = 1.0f;
             musicVolumeSlider.value = musicVolumeValue;
             fxVolumeSlider.value = fxVolumeValue;
 
@@ -90,13 +88,16 @@ public class VolumeSettings : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Update backgroundmusic volume
+        foreach (Music m in music.musics)
+        {
+            m.source.volume = m.volume * musicVolumeSlider.value;
+        }
 
-        backgroundMusic.volume = musicVolumeSlider.value;
-
+        //Update volume of sound effects
         foreach (Sound s in music.sounds)
         {
-            float tmp = fxVolumeSlider.value - 0.5f;
-            s.source.volume = s.volume + tmp;
+            s.source.volume = s.volume * fxVolumeSlider.value;
         }
 
         SaveSoundSettings();

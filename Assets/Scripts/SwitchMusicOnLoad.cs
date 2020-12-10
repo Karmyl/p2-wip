@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class SwitchMusicOnLoad : MonoBehaviour
 {
-    public AudioClip newTrack;
     private AudioManager audiomanager;
+    public string trackName;
     // Start is called before the first frame update
     void Start()
     {
         audiomanager = FindObjectOfType<AudioManager>();
 
-        if (newTrack != null)
+        if (trackName != null)
         {
-            audiomanager.ChangeBackgroundMusic(newTrack);
+            audiomanager.ChangeBackgroundMusic(trackName);
 
-            if (newTrack.name == "Game_Over_BGMusic")
+            if (trackName == "Game_Over_BGMusic")
             {
                 audiomanager.backgroundMusic.loop = false;
             } else 
