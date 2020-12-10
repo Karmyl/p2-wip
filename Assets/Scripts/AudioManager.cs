@@ -1,7 +1,10 @@
 ﻿
 using UnityEngine.Audio;
+using UnityEngine.UI;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
+
 public class AudioManager : MonoBehaviour
 {
     private static readonly string FirstPlay = "FirstPlay";
@@ -16,7 +19,9 @@ public class AudioManager : MonoBehaviour
     private float musicVolumeValue;
     private float fxVolumeValue;
 
-    
+    Scene currentScene;
+
+
     private void Awake()
     {
         ContinueSettings();
@@ -84,6 +89,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        currentScene = SceneManager.GetActiveScene();
 
         DontDestroyOnLoad(gameObject);
 
@@ -124,8 +130,8 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetInt(FirstPlay, -1);       
         }
 
-        Debug.Log("menumenumenumenu");
-        ChangeBackgroundMusic("MainMenu");
+        string sceneName = currentScene.name;
+        ChangeBackgroundMusic(sceneName);
 
     }
 
