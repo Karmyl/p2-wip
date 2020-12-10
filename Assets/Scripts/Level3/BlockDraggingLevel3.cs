@@ -67,7 +67,8 @@ public class BlockDraggingLevel3 : MonoBehaviour
                 {
                     // Slow down dino
                     // Triggers every frame?
-                    targetDino.GetComponent<PathFollower>().SetSlowedState(true, 30.0f);
+                    targetDino.GetComponent<PathFollower>().SetSlowedState(true, 2.0f);
+                    StartCoroutine(Testi());
                 }
             }
         }
@@ -131,5 +132,11 @@ public class BlockDraggingLevel3 : MonoBehaviour
                 }
             }
         }
+    }
+
+    IEnumerator Testi()
+    {
+        yield return new WaitForSeconds(2.0f);
+        Destroy(this.gameObject);
     }
 }
