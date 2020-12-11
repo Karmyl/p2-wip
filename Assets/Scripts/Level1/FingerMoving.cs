@@ -49,7 +49,7 @@ public class FingerMoving : MonoBehaviour
 
         // Set our position as a fraction of the distance between the markers.
         transform.position = Vector3.Lerp(startMarker.position, endMarker.position, fractionOfJourney);
-        
+
     }
 
     IEnumerator DoFadeIn(SpriteRenderer _sprite) 
@@ -75,5 +75,5 @@ public class FingerMoving : MonoBehaviour
     {
         FingerIcon.GetComponent<Renderer>().enabled = false;
     }
-    
+  
 }
