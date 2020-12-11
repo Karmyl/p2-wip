@@ -27,8 +27,8 @@ public class DatabaseLoader : MonoBehaviour
                 string[] tokens = s.Split('#');
                 int id = Int32.Parse(tokens[0]);
                 string name = tokens[1];
-                int score = Int32.Parse(tokens[3]);
                 int avatarId = Int32.Parse(tokens[2]);
+                int score = Int32.Parse(tokens[3]);
                 int skipTutorialLevel1 = Int32.Parse(tokens[4]);
                 int skipTutorialLevel2 = Int32.Parse(tokens[5]);
                 int skipTutorialLevel3 = Int32.Parse(tokens[6]);
@@ -37,7 +37,27 @@ public class DatabaseLoader : MonoBehaviour
                 newPlayer.SkipTutorialLevel2 = skipTutorialLevel2;
                 newPlayer.SkipTutorialLevel3 = skipTutorialLevel3;
                 players.Add(newPlayer);
-                SetCurrentPlayer(newPlayer);
+            }
+
+            // Check if last user id exists
+            int lastId = PlayerPrefs.GetInt("lastId");
+            if(lastId != 0)
+            {
+                // Find and set active last player id
+                bool found = false;
+                for(int i = 0; i < players.Count && !found; i++)
+                {
+                    if(players[i].Id == lastId)
+                    {
+                        found = true;
+                        SetCurrentPlayer(players[i]);
+                    }
+                }
+            }
+            else
+            {
+                // No previous lastId set, use first one in list
+                SetCurrentPlayer(players[0]);
             }
         }
         else
@@ -76,6 +96,9 @@ public class DatabaseLoader : MonoBehaviour
         newPlayer.PlayerName = name;
         newPlayer.AvatarId = avatarId;
         newPlayer.Score = 0;
+        newPlayer.SkipTutorialLevel1 = 0;
+        newPlayer.SkipTutorialLevel2 = 0;
+        newPlayer.SkipTutorialLevel3 = 0;
         players.Add(newPlayer);
         SetCurrentPlayer(newPlayer);
         SaveCurrentPlayer();
