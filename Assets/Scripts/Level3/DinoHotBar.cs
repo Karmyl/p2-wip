@@ -6,8 +6,7 @@ public class DinoHotBar : MonoBehaviour
 {
     public GameObject hotbar;
     public List<GameObject> symbols = new List<GameObject>();
-    public List<Vector3> savePos;
-    public Vector3 currentPos;
+    public GameObject[] prefabs;
 
     // Start is called before the first frame update
     void Start()
@@ -15,8 +14,11 @@ public class DinoHotBar : MonoBehaviour
         //Debug.Log("APUA!");
         for (int i = 0; i < hotbar.transform.childCount; i++)
         {
-            GameObject go = hotbar.transform.GetChild(i).GetChild(0).gameObject;
+            int index = Random.Range(0, prefabs.Length);
+            GameObject go = Instantiate(prefabs[index], hotbar.transform.GetChild(i));
+            go.GetComponent<BlockDraggingLevel3>().currentBlockSlot = this.gameObject;
             symbols.Add(go);
+
         }
 
         symbols = Shuffle<GameObject>(symbols);
@@ -53,19 +55,23 @@ public class DinoHotBar : MonoBehaviour
        
         while (true)
         {
-            
+
+            // Rebuild list of available blocks
+            symbols.Clear();
+            for (int i = 0; i < hotbar.transform.childCount; i++)
+            {
+                if (hotbar.transform.GetChild(i).childCount != 0)
+                {
+                    symbols.Add(hotbar.transform.GetChild(i).GetChild(0).gameObject);
+                }
+            }
             if (symbols.Count > 0)
             {
                 if (this.transform.childCount > 0)
                 {
                     Destroy(this.transform.GetChild(0).gameObject);
-                    symbols.RemoveAt(0);
-
-                    if (symbols.Count > 0)
-                    {
-                        BlockInstantiate();
-                        this.gameObject.transform.localScale = new Vector3(23,23,23);
-                    }
+                    BlockInstantiate();
+                    this.gameObject.transform.localScale = new Vector3(23, 23, 23);
                 }
             }
             //yield return new WaitForSeconds(3f);
