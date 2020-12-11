@@ -11,14 +11,13 @@ public class DinoHotBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //Debug.Log("APUA!");
         for (int i = 0; i < hotbar.transform.childCount; i++)
         {
             int index = Random.Range(0, prefabs.Length);
             GameObject go = Instantiate(prefabs[index], hotbar.transform.GetChild(i));
+            go.AddComponent<BlockDraggingLevel3>();
             go.GetComponent<BlockDraggingLevel3>().currentBlockSlot = this.gameObject;
             symbols.Add(go);
-
         }
 
         symbols = Shuffle<GameObject>(symbols);

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 6620243902238012429}
   - component: {fileID: 6620243902238012428}
   - component: {fileID: 6620243902238012435}
-  - component: {fileID: 6620243902238012430}
+  - component: {fileID: 5109866603965372761}
   m_Layer: 0
-  m_Name: palikka4 1
+  m_Name: palikka4_1
   m_TagString: Block
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,7 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd2a276c9e3fe3f4b9f72340c7fcdbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &6620243902238012430
+--- !u!114 &5109866603965372761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,8 +134,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6620243902238012433}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 383ecdc745dbf26459b373a089cafb9b, type: 3}
+  m_Script: {fileID: 11500000, guid: c9802d5965869594ab151c35a8a8a22e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentBlockSlot: {fileID: 0}
-  blockType: 4
+  type: 4
