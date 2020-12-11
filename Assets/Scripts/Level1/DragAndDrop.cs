@@ -15,10 +15,14 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     private CanvasGroup canvasGroup;
     AudioManager audiomanager;
 
-    private void Awake()
+    private void Start()
     {
         audiomanager = FindObjectOfType<AudioManager>();
+        audiomanager.PlaySound("chickens");
+    }
 
+    private void Awake()
+    {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
         defaultPosition = GetComponent<RectTransform>().localPosition;

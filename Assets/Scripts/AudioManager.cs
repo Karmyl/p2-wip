@@ -62,15 +62,14 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    //Play backgroundmusic by name
-    public void PlayMusic(string name)
+    //Set new backgroundmusic by name
+    public void SetMusic(string name)
     {
         Music m = Array.Find(musics, music => music.name == name);
         backgroundMusic = m.source;
         backgroundMusic.name = m.name;
         backgroundMusic.clip = m.clip;
-        Debug.Log(m.name);
-        //m.source.Play();
+
     }
 
     //Stop playing sound effect 
@@ -89,8 +88,10 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        Debug.Log(">>>>>>>>POINT");
         currentScene = SceneManager.GetActiveScene();
 
+        //do not destroy game object if not dublicated
         DontDestroyOnLoad(gameObject);
 
         if(FindObjectsOfType<AudioManager>().Length > 1)
@@ -98,7 +99,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //check if first play ---------------------korjaus
+        //check if first play
         firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
         
         if (firstPlayValue == 0)//set values
@@ -138,23 +139,19 @@ public class AudioManager : MonoBehaviour
 
     public void ChangeBackgroundMusic(string music)
     {
-        Debug.Log(backgroundMusic.name + music);
         if(backgroundMusic.name == music)//Continue without changing music
         {
-            Debug.Log("Same audioclip");
             return;
         } else //stop current music and start new bgmusic 
-        {           
-            Debug.Log(backgroundMusic.name);
-            
+        {                    
             backgroundMusic.Stop();
-            PlayMusic(music);
-            backgroundMusic.Play();
+            SetMusic(music);
 
             if (backgroundMusic.name == "GameOver")
             {
                 backgroundMusic.loop = false;
             }
+
             backgroundMusic.Play();
 
         }

@@ -13,12 +13,8 @@ public class MenuScript : MonoBehaviour
         Application.LoadLevel(sceneName);
 
         audiomanager.PlaySound("buttonSoundFX");
-        
-        if (sceneName == "Gamelevel")
-        {
-            audiomanager.PlaySound("chickens");
-        }
-        else if (sceneName == "MainMenu" || sceneName == "ChangeLevel")
+       
+        if (sceneName == "MainMenu" || sceneName == "ChangeLevel")
         {
             audiomanager.StopSound("chickens");
         } 
