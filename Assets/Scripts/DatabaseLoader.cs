@@ -29,14 +29,13 @@ public class DatabaseLoader : MonoBehaviour
                 string name = tokens[1];
                 int score = Int32.Parse(tokens[3]);
                 int avatarId = Int32.Parse(tokens[2]);
-                int skipIntroLevel1 = Int32.Parse(tokens[4]);
-                int skipIntroLevel2 = Int32.Parse(tokens[5]);
-                int skipIntroLevel3 = Int32.Parse(tokens[6]);
+                int skipTutorialLevel1 = Int32.Parse(tokens[4]);
+                int skipTutorialLevel2 = Int32.Parse(tokens[5]);
+                int skipTutorialLevel3 = Int32.Parse(tokens[6]);
                 Player newPlayer = new Player(id, name, score, avatarId);
-
-                newPlayer.SkipIntroLevel1 = skipIntroLevel1;
-                newPlayer.SkipIntroLevel2 = skipIntroLevel2;
-                newPlayer.SkipIntroLevel3 = skipIntroLevel3;
+                newPlayer.SkipTutorialLevel1 = skipTutorialLevel1;
+                newPlayer.SkipTutorialLevel2 = skipTutorialLevel2;
+                newPlayer.SkipTutorialLevel3 = skipTutorialLevel3;
                 players.Add(newPlayer);
                 SetCurrentPlayer(newPlayer);
             }
@@ -48,9 +47,9 @@ public class DatabaseLoader : MonoBehaviour
             newPlayer.PlayerName = "Pelaaja";
             newPlayer.AvatarId = 1;
             newPlayer.Score = 0;
-            newPlayer.SkipIntroLevel1 = 0;
-            newPlayer.SkipIntroLevel2 = 0;
-            newPlayer.SkipIntroLevel3 = 0;
+            newPlayer.SkipTutorialLevel1 = 0;
+            newPlayer.SkipTutorialLevel2 = 0;
+            newPlayer.SkipTutorialLevel3 = 0;
             players.Add(newPlayer);
 
             // Write default entry for player profile database

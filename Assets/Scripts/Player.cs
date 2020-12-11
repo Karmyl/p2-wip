@@ -8,9 +8,9 @@ public class Player
     private string playerName;
     private int score;
     private int avatarId;
-    private int skipIntroLevel1;
-    private int skipIntroLevel2;
-    private int skipIntroLevel3;
+    private int skipTutorialLevel1;
+    private int skipTutorialLevel2;
+    private int skipTutorialLevel3;
 
     public int Id
     {
@@ -36,20 +36,20 @@ public class Player
         set { score = value; }
     }
 
-    public int SkipIntroLevel1
+    public int SkipTutorialLevel1
     {
-        get { return skipIntroLevel1;  }
-        set { skipIntroLevel1 = value; }
+        get { return skipTutorialLevel1;  }
+        set { skipTutorialLevel1 = value; }
     }
-    public int SkipIntroLevel2
+    public int SkipTutorialLevel2
     {
-        get { return skipIntroLevel2; }
-        set { skipIntroLevel2 = value; }
+        get { return skipTutorialLevel2; }
+        set { skipTutorialLevel2 = value; }
     }
-    public int SkipIntroLevel3
+    public int SkipTutorialLevel3
     {
-        get { return skipIntroLevel3; }
-        set { skipIntroLevel3 = value; }
+        get { return skipTutorialLevel3; }
+        set { skipTutorialLevel3 = value; }
     }
 
 
@@ -59,9 +59,9 @@ public class Player
         this.playerName = "";
         this.avatarId = 0;
         this.score = 0;
-        this.skipIntroLevel1 = 0;
-        this.skipIntroLevel2 = 0;
-        this.skipIntroLevel3 = 0;
+        this.skipTutorialLevel1 = 0;
+        this.skipTutorialLevel2 = 0;
+        this.skipTutorialLevel3 = 0;
     }
 
     public Player(int id, string playerName, int score, int avatarId)
@@ -70,14 +70,14 @@ public class Player
         this.playerName = playerName;
         this.avatarId = avatarId;
         this.score = score;
-        this.skipIntroLevel1 = 0;
-        this.skipIntroLevel2 = 0;
-        this.skipIntroLevel3 = 0;
+        this.skipTutorialLevel1 = 0;
+        this.skipTutorialLevel2 = 0;
+        this.skipTutorialLevel3 = 0;
     }
 
     public string GetAsString()
     {
-        string s = "" + id + "#" + playerName + "#" + avatarId + "#" + score + "#" + skipIntroLevel1 + "#" + skipIntroLevel2 + "#" + skipIntroLevel3;
+        string s = "" + id + "#" + playerName + "#" + avatarId + "#" + score + "#" + skipTutorialLevel1 + "#" + skipTutorialLevel2 + "#" + skipTutorialLevel3;
         return s;
     }
 }
