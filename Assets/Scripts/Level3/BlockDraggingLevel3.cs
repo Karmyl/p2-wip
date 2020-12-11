@@ -108,7 +108,7 @@ public class BlockDraggingLevel3 : MonoBehaviour
             Transform blockSlotTransform = collision.collider.transform.Find("DinoBlockSlot");
             if(blockSlotTransform != null)
             {
-                int allowedBlockType = currentBlockSlot.GetComponentInChildren<DinoHotBar>().GetBlockType();
+                int allowedBlockType = currentBlockSlot.GetComponentInChildren<RandomizeBlocksLevel3>().GetBlockType();
                 if (this.blockType == allowedBlockType)
                 {
                     this.transform.position = new Vector3(0.0f, 0.0f, 0.0f);

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DinoHotBar : MonoBehaviour
+public class RandomizeBlocksLevel3 : MonoBehaviour
 {
     public GameObject hotbar;
     public List<GameObject> symbols = new List<GameObject>();
