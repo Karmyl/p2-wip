@@ -17,6 +17,7 @@ public class RandomizeBlocksLevel3 : MonoBehaviour
             GameObject go = Instantiate(prefabs[index], hotbar.transform.GetChild(i));
             go.AddComponent<BlockDraggingLevel3>();
             go.GetComponent<BlockDraggingLevel3>().currentBlockSlot = this.gameObject;
+            go.GetComponent<BlockDraggingLevel3>().blockType = go.GetComponent<BlockType>().type;
             symbols.Add(go);
         }
 
