@@ -7,24 +7,30 @@ using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
+    //Playerpref's keys
     private static readonly string FirstPlay = "FirstPlay";
     private static readonly string BackgroundPref = "BackgroundPref";
     private static readonly string FxVolumePref = "FxVolumePref";
 
+    //Playerpref's values
     private int firstPlayValue;
+    private float musicVolumeValue;
+    private float fxVolumeValue;
+    
+    //Lists for backgroundmusics and soundeffects
     public Music[] musics;
     public Sound[] sounds;
 
     public AudioSource backgroundMusic;
-    private float musicVolumeValue;
-    private float fxVolumeValue;
 
     Scene currentScene;
+    string sceneName;
 
-
+    Music bgMusic;
     private void Awake()
     {
         ContinueSettings();
+
         Debug.Log(PlayerPrefs.GetInt("FirstPlay"));
 
     }
@@ -53,6 +59,7 @@ public class AudioManager : MonoBehaviour
             s.source.name = s.name;
             s.source.volume = s.volume * fxVolumeValue;
         }
+
     }
 
     //play sound effect by name
@@ -61,14 +68,12 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.name == name);
         s.source.Play();
     }
-
-    //Set new backgroundmusic by name
-    public void SetMusic(string name)
+    
+    //Play backgroundmusic by name
+    public void PlayMusic(string name)
     {
         Music m = Array.Find(musics, music => music.name == name);
-        backgroundMusic = m.source;
-        backgroundMusic.name = m.name;
-        backgroundMusic.clip = m.clip;
+        m.source.Play();
 
     }
 
@@ -79,6 +84,7 @@ public class AudioManager : MonoBehaviour
         s.source.Stop();
     }
 
+
     //Play backgroundmusic by name
     public void StopMusic(string name)
     {
@@ -88,8 +94,8 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(">>>>>>>>POINT");
         currentScene = SceneManager.GetActiveScene();
+        sceneName = currentScene.name;
 
         //do not destroy game object if not dublicated
         DontDestroyOnLoad(gameObject);
@@ -129,31 +135,57 @@ public class AudioManager : MonoBehaviour
             PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
             PlayerPrefs.SetFloat(FxVolumePref, fxVolumeValue);
             PlayerPrefs.SetInt(FirstPlay, -1);       
-        }
 
-        string sceneName = currentScene.name;
-        ChangeBackgroundMusic(sceneName);
+            ChangeBackgroundMusic(sceneName);
+        } 
+
 
     }
 
 
     public void ChangeBackgroundMusic(string music)
     {
-        if(backgroundMusic.name == music)//Continue without changing music
+        Debug.Log("Trying to change bgmusic");
+        foreach (Music m in musics)
         {
-            return;
-        } else //stop current music and start new bgmusic 
-        {                    
-            backgroundMusic.Stop();
-            SetMusic(music);
-
-            if (backgroundMusic.name == "GameOver")
+            if(m.source.isPlaying)
             {
-                backgroundMusic.loop = false;
+                bgMusic = m;
+                Debug.Log("previous play: " + bgMusic.name);
             }
+        }
 
-            backgroundMusic.Play();
+        if (bgMusic == null)
+        {
+            Debug.Log("no music");
+        } else
+        {
+            Debug.Log(bgMusic.name);
+        }
+        if (bgMusic != null)
+        {
+            if (bgMusic.name == music)//Continue without changing music
+            {
+                return;
+            } else //stop current music and start new bgmusic 
+            {
+                StopMusic(bgMusic.name);
+                PlayMusic(music);
 
+                if (bgMusic.name == "GameOver")
+                {   
+                    bgMusic.loop = false;
+                }
+
+                if (backgroundMusic.name == "GameOver")
+                {
+                    backgroundMusic.loop = false;
+                }
+            }
+        } else
+        {
+            PlayMusic(music);
+            Debug.Log("first music playing");
         }
     }
 

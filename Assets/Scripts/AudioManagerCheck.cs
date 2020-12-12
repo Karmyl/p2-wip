@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManagerCheck : MonoBehaviour
 {
-    public GameObject audiomanager; 
+    public AudioManager audiomanager; 
     // Start is called before the first frame update
     void Start()
     {

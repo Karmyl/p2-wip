@@ -2270,7 +2270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b67785f89e6cb874782b6407fca0ee53, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audiomanager: {fileID: 917369076882996181, guid: 43813103f8f419f4b921d4dbfeb7d4e6,
+  audiomanager: {fileID: 6539605085612974569, guid: 43813103f8f419f4b921d4dbfeb7d4e6,
     type: 3}
 --- !u!4 &1185683909
 Transform:

@@ -6,6 +6,7 @@ public class SwitchMusicOnLoad : MonoBehaviour
 {
     private AudioManager audiomanager;
     public string trackName;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -14,16 +15,6 @@ public class SwitchMusicOnLoad : MonoBehaviour
         if (trackName != null)
         {
             audiomanager.ChangeBackgroundMusic(trackName);
-
-            if (trackName == "GameOver")
-            {
-                audiomanager.backgroundMusic.loop = false;
-            } else 
-            {
-                audiomanager.backgroundMusic.loop = true;
-
-            }
-
         } 
     }
 

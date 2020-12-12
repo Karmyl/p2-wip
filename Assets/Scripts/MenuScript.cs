@@ -13,7 +13,9 @@ public class MenuScript : MonoBehaviour
         Application.LoadLevel(sceneName);
 
         audiomanager.PlaySound("buttonSoundFX");
-       
+
+        Debug.Log("scene loaded");
+
         if (sceneName == "MainMenu" || sceneName == "ChangeLevel")
         {
             audiomanager.StopSound("chickens");
