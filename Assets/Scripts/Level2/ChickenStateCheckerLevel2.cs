@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class ChickenStateChecker : MonoBehaviour
+public class ChickenStateCheckerLevel2 : MonoBehaviour
 {
     private AudioManager audiomanager;
     private GameObject[] dinosaurs;

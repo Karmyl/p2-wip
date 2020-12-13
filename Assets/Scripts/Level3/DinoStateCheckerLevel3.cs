@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class DinoStateChecker : MonoBehaviour
+public class DinoStateCheckerLevel3 : MonoBehaviour
 {
     // Audiomanager for playing sound effects
     private AudioManager audiomanager;
@@ -39,7 +39,7 @@ public class DinoStateChecker : MonoBehaviour
         {
             numChickensEaten++;
             audiomanager.PlaySound("chickenGetsEaten");
-            collision.collider.GetComponentInChildren<PathFollowerLevel2>().enabled = false;
+            collision.collider.GetComponentInChildren<PathFollowerLevel3>().enabled = false;
             collision.collider.GetComponentInChildren<SkinnedMeshRenderer>().enabled = false;
             collision.collider.GetComponentInChildren<BoxCollider>().enabled = false;
             collision.collider.GetComponentInChildren<Rigidbody>().isKinematic = true;
@@ -49,7 +49,7 @@ public class DinoStateChecker : MonoBehaviour
             if(numChickensEaten == numChickensInGame)
             {
                 // Reset velocity for RigidBody and stop animating dinosaur
-                this.GetComponent<PathFollowerLevel2>().enabled = false;
+                this.GetComponent<PathFollowerLevel3>().enabled = false;
                 this.GetComponent<Rigidbody>().AddForce(Vector3.zero);
                 this.GetComponent<Rigidbody>().isKinematic = true;
                 this.GetComponentInChildren<Animator>().enabled = false;
@@ -59,17 +59,17 @@ public class DinoStateChecker : MonoBehaviour
 
         if (collision.collider.gameObject.CompareTag("Block"))
         {
-            // Dinosaur slowing
-            if (collision.collider.gameObject.GetComponent<BlockDraggingLevel2>().GetIsScaled())
-            {
-                // Check if dino has pathfollowing component
-                PathFollowerLevel2 script = this.GetComponent<PathFollowerLevel2>();
-                if(script != null)
-                {
-                    Score.AddScore(1);
-                    script.SetSlowedState(true, 2.0f);
-                }
-            }
+            //// Dinosaur slowing
+            //if (collision.collider.gameObject.GetComponent<BlockDraggingLevel3>().GetIsScaled())
+            //{
+            //    // Check if dino has pathfollowing component
+            //    PathFollowerLevel2 script = this.GetComponent<PathFollowerLevel3>();
+            //    if(script != null)
+            //    {
+            //        Score.AddScore(1);
+            //        script.SetSlowedState(true, 2.0f);
+            //    }
+            //}
 
             // Sound effect here
             audiomanager.PlaySound("dino_osuu_palikkaan");
