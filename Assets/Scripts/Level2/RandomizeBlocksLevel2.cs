@@ -21,10 +21,6 @@ public class RandomizeBlocksLevel2 : MonoBehaviour
         }
 
         symbols = Shuffle<GameObject>(symbols);
-        for (int t = 0; t < symbols.Count; t++)
-        {
-            Debug.Log(symbols[t]);
-        }
     }
 
     // Update is called once per frame

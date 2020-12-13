@@ -10,7 +10,8 @@ public class BlockDraggingLevel2 : MonoBehaviour
     private bool startedDragging = false;
     private bool isOnCorrectLane = false;
     private Vector3 initialScale;
-    AudioManager audiomanager;
+    private AudioManager audiomanager;
+    private string[] laneTags = { "LaneBlue", "LaneRed", "LaneYellow", "LaneGreen" };
 
     public bool GetIsScaled()
     {
@@ -82,58 +83,44 @@ public class BlockDraggingLevel2 : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        string laneTag = collision.gameObject.tag;
-        switch (blockType)
+
+        // Did block hit any lanes?
+        string colliderTag = collision.gameObject.tag;
+        bool isOnLane = false;
+        for(int i = 0; i < laneTags.Length && !isOnLane; i++)
         {
-            // Block = yellow
-            case 1:
-                if (laneTag.CompareTo("LaneYellow") == 0)
-                {
-                    isOnCorrectLane = true;
-                }
-                break;
-
-            // Block = red
-            case 2:
-                if (laneTag.CompareTo("LaneRed") == 0)
-                {
-                    isOnCorrectLane = true;
-                }
-                break;
-
-            // Block = green
-            case 3:
-                if (laneTag.CompareTo("LaneGreen") == 0)
-                {
-                    isOnCorrectLane = true;
-                }
-                break;
-
-            // Block = blue
-            case 4:
-                if (laneTag.CompareTo("LaneBlue") == 0)
-                {
-                    isOnCorrectLane = true;
-                }
-                break;
-
-            default:
-                break;
-                
+            if(colliderTag.CompareTo(laneTags[i]) == 0)
+            {
+                isOnLane = true;
+            }
         }
 
-        if (isOnCorrectLane)
+        if(isOnLane)
         {
-            if (!isScaled)
+            // Are block and lane materials same?
+            // If they are then block is on correct lane.
+            isOnCorrectLane = false;
+            Material blockMaterial = this.GetComponent<MeshRenderer>().material;
+            Material laneMaterial = collision.gameObject.GetComponent<MeshRenderer>().material;
+            if (blockMaterial.name.CompareTo(laneMaterial.name) == 0)
             {
-                this.transform.localScale *= 2.0f;
-                isScaled = true;
-                audiomanager.PlaySound("palikka_kasvaa");
+                isOnCorrectLane = true;
             }
-        } else
-        {
-             audiomanager.PlaySound("palikka1");
-        }    
+
+            if (isOnCorrectLane)
+            {
+                if (!isScaled)
+                {
+                    this.transform.localScale *= 2.0f;
+                    isScaled = true;
+                    audiomanager.PlaySound("palikka_kasvaa");
+                }
+            }
+            else
+            {
+                audiomanager.PlaySound("palikka1");
+            }
+        }
     }
 }
 

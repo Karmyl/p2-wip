@@ -3226,9 +3226,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1088555287}
   - component: {fileID: 1088555289}
+  - component: {fileID: 1088555292}
   - component: {fileID: 1088555290}
   - component: {fileID: 1088555291}
   - component: {fileID: 1088555288}
+  - component: {fileID: 1088555293}
   m_Layer: 0
   m_Name: Dinosaur
   m_TagString: Dino
@@ -3263,8 +3265,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c830ca0396ca7cc4da7fb01d917feeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dinosaur: {fileID: 1088555286}
-  chicken: {fileID: 1171617784}
   startPosition: {fileID: 2038052578}
   parentOfWaypoints: {fileID: 649993737}
   totalPathDurationInSeconds: 20
@@ -3310,6 +3310,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd2a276c9e3fe3f4b9f72340c7fcdbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &1088555292
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088555286}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 2.4
+  m_Center: {x: 0.49, y: 3.58, z: 0.97}
+--- !u!114 &1088555293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1088555286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fff369a4ed07ad43a079edd47746663, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1105804931
@@ -3455,6 +3480,7 @@ GameObject:
   - component: {fileID: 1171617788}
   - component: {fileID: 1171617789}
   - component: {fileID: 1171617785}
+  - component: {fileID: 1171617790}
   m_Layer: 0
   m_Name: Chicken
   m_TagString: Kana
@@ -3474,8 +3500,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c830ca0396ca7cc4da7fb01d917feeea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dinosaur: {fileID: 1088555286}
-  chicken: {fileID: 1171617784}
   startPosition: {fileID: 1561680371}
   parentOfWaypoints: {fileID: 649993737}
   totalPathDurationInSeconds: 20
@@ -3537,6 +3561,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd2a276c9e3fe3f4b9f72340c7fcdbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1171617790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171617784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b8aa2362d2739f4896ae853b3f1f2d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1172824960
@@ -9369,6 +9405,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e805f74c269464d49976ea4992519e4f, type: 3}
+--- !u!1 &1553880199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1553880200}
+  m_Layer: 0
+  m_Name: Chicken start (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1553880200
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553880199}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.81, y: 0, z: -3.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1683957235}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1561680370
 GameObject:
   m_ObjectHideFlags: 0
@@ -9393,7 +9459,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561680370}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7.88, y: 0, z: -1.66}
+  m_LocalPosition: {x: 8.83, y: 0, z: 0.26}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1683957235}
@@ -9912,6 +9978,7 @@ Transform:
   m_Children:
   - {fileID: 2038052578}
   - {fileID: 1561680371}
+  - {fileID: 1553880200}
   m_Father: {fileID: 1073238421}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
