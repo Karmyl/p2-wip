@@ -7,7 +7,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 {
     public int blockID;
 
-    [SerializeField] private Canvas canvas;
+    public Canvas canvas;
     public Vector3 defaultPosition;
     public bool droppedOnSlot;
 
@@ -25,8 +25,6 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
-        defaultPosition = GetComponent<RectTransform>().localPosition;
-        defaultPosition = this.rectTransform.localPosition;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -35,6 +33,7 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
         droppedOnSlot = false;
         canvasGroup.alpha = .6f;
         canvasGroup.blocksRaycasts = false;
+        defaultPosition = this.transform.position;
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -51,16 +50,15 @@ public class DragAndDrop : MonoBehaviour, IPointerDownHandler, IBeginDragHandler
 
         if (droppedOnSlot)
         {
-            this.rectTransform.localPosition = defaultPosition;
+            this.transform.position = defaultPosition;
             audiomanager.PlaySound("coin collected");
             //audiomanager.PlaySound("dino_osuu_palikkaan");
 
         }
         else
         {
-            this.rectTransform.localPosition = defaultPosition;
+            this.transform.position = defaultPosition;
             audiomanager.PlaySound("lane missed");
-
         }
     }
 
