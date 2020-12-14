@@ -15,8 +15,8 @@ public class RandomizeBlocksLevel1 : MonoBehaviour
         {
             int index = Random.Range(0, prefabs.Length);
             GameObject go = Instantiate(prefabs[index], hotbar.transform.GetChild(i));
-           // go.AddComponent<BlockDraggingLevel2>();
-           // go.GetComponent<BlockDraggingLevel2>().blockType = go.GetComponent<BlockType>().type;
+            go.transform.position = hotbar.transform.GetChild(i).position;
+            go.GetComponent<DragAndDrop>().canvas = FindObjectOfType<Canvas>();
             symbols.Add(go);
         }
         Debug.Log(symbols);
