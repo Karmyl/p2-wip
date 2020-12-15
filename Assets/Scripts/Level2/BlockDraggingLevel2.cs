@@ -111,15 +111,26 @@ public class BlockDraggingLevel2 : MonoBehaviour
             {
                 if (!isScaled)
                 {
-                    this.transform.localScale *= 2.0f;
+                    StartCoroutine(ScaleAnimation());
                     isScaled = true;
-                    audiomanager.PlaySound("palikka_kasvaa");
+                    
                 }
             }
             else
             {
                 audiomanager.PlaySound("palikka1");
             }
+        }
+    }
+    IEnumerator ScaleAnimation()
+    {
+        float f = 1.1f;
+        audiomanager.PlaySound("palikka_kasvaa");
+        while (f < 1.109f)
+        {
+            this.transform.localScale *= f;
+            f += 0.001f;
+            yield return new WaitForSeconds(0.02f);
         }
     }
 }
