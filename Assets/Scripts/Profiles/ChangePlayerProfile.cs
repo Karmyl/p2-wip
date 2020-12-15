@@ -14,65 +14,39 @@ public class ChangePlayerProfile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //players = DatabaseLoader.GetAllPlayers();
-        //List<string> names = new List<string>();
-        //foreach (Player p in players)
-        //{
-        //    names.Add(p.PlayerName);
-        //}
-        //dropdown.AddOptions(names);
-
-        //// Select first item in list if names-array contains at least
-        //// one item
-        //if (names.Count > 0)
-        //{
-        //    // Find current player and set that as selected
-        //    Player currentPlayer = DatabaseLoader.GetCurrentPlayer();
-        //    int currentPlayerId = currentPlayer.Id;
-        //    bool found = false;
-        //    for (int i = 0; i < players.Count && !found; i++)
-        //    {
-        //        if(players[i].Id == currentPlayerId)
-        //        {
-        //            found = true;
-        //            dropdown.value = i;
-        //            selectedPlayerIndex = i;
-        //        }
-        //    }
-        //}
-
         dropdown.ClearOptions();
         players = DatabaseLoader.GetAllPlayers();
         List<Dropdown.OptionData> items = new List<Dropdown.OptionData>();        
         foreach(Player p in players)
         {
             int avatarId = p.AvatarId;
-            Dropdown.OptionData newOption = new Dropdown.OptionData(p.PlayerName, sprites[avatarId]);
+            string text = p.PlayerName + ", " + p.Score + " pistettä";
+            Dropdown.OptionData newOption = new Dropdown.OptionData(text, sprites[avatarId]);
             items.Add(newOption);
         }
         dropdown.AddOptions(items);
 
-        // Select first item in list if names-array contains at least
+        // Select first item in list if names - array contains at least
         // one item
-        //if (names.Count > 0)
-        //{
-        //    // Find current player and set that as selected
-        //    Player currentPlayer = DatabaseLoader.GetCurrentPlayer();
-        //    int currentPlayerId = currentPlayer.Id;
-        //    bool found = false;
-        //    for (int i = 0; i < players.Count && !found; i++)
-        //    {
-        //        if (players[i].Id == currentPlayerId)
-        //        {
-        //            found = true;
-        //            dropdown.value = i;
-        //            selectedPlayerIndex = i;
-        //        }
-        //    }
-        //}
+        if (items.Count > 0)
+        {
+            // Find current player and set that as selected
+            Player currentPlayer = DatabaseLoader.GetCurrentPlayer();
+            int currentPlayerId = currentPlayer.Id;
+            bool found = false;
+            for (int i = 0; i < players.Count && !found; i++)
+            {
+                if (players[i].Id == currentPlayerId)
+                {
+                    found = true;
+                    dropdown.value = i;
+                    selectedPlayerIndex = i;
+                }
+            }
+        }
     }
 
-        public void SelectedIndexChanged(int index)
+    public void SelectedIndexChanged(int index)
     {
         selectedPlayerIndex = index;
     }
