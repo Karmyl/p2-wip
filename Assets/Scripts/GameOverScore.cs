@@ -6,13 +6,16 @@ using TMPro;
 
 public class GameOverScore : MonoBehaviour
 {
-    public TMP_Text nameText;
-    public GameObject avatar;
-    public int avatarID;
-    private int displayScore;
+    // Player avatar image and text for name and score
+    public Image avatarImage;
+    public TMP_Text nameAndScore;
+
+    // Array of avatar sprites
+    public Sprite[] sprites;
+
     public TMP_Text scoreUI;
-    AudioManager audiomanager;
-    public GameObject[] avatarPrefabs;
+    private int displayScore;
+    private AudioManager audiomanager;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +23,10 @@ public class GameOverScore : MonoBehaviour
         audiomanager = FindObjectOfType<AudioManager>();
         displayScore = 0;
         StartCoroutine(ScoreUpdater());
-        nameText.text = DatabaseLoader.GetCurrentPlayer().PlayerName;
-        avatarID = DatabaseLoader.GetCurrentPlayer().AvatarId;
 
-        avatar = avatarPrefabs[avatarID];
-        GameObject go = Instantiate(avatar, avatar.transform);
-        //avatarPrefabs[0] = avatar;
+        // Hide avatar image and player text
+        nameAndScore.enabled = false;
+        avatarImage.enabled = false;
     }
 
     private IEnumerator ScoreUpdater()
@@ -48,9 +49,20 @@ public class GameOverScore : MonoBehaviour
 
         // Save scores to database
         Player player = DatabaseLoader.GetCurrentPlayer();
-        player.Score += Score.score;
+        if(player != null)
+        {
+            player.Score += Score.score;
+            DatabaseLoader.SaveCurrentPlayer();
 
-        DatabaseLoader.SaveCurrentPlayer();
-        Debug.Log("id: " + player.Id + ", name: " + player.PlayerName + " avatarId: " + player.AvatarId + ", score: " + player.Score);
+            // Show player image and total score after counting new scores
+            nameAndScore.enabled = true;
+            avatarImage.enabled = true;
+
+            int avatarId = player.AvatarId;
+            avatarImage.sprite = sprites[avatarId];
+
+            string text = player.PlayerName + ", " + player.Score + " pistettä";
+            nameAndScore.text = text;
+        }
     }
 }
