@@ -70,9 +70,7 @@ public class DinoStateCheckerLevel3 : MonoBehaviour
             //        script.SetSlowedState(true, 2.0f);
             //    }
             //}
-
-            // Sound effect here
-            audiomanager.PlaySound("dino_osuu_palikkaan");
+         
         }
     }
 }
