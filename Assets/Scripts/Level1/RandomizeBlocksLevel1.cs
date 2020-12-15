@@ -7,21 +7,33 @@ public class RandomizeBlocksLevel1 : MonoBehaviour
     public GameObject hotbar;
     public List<GameObject> symbols = new List<GameObject>();
     public GameObject[] prefabs;
+    public GameObject blockRed;
+    public GameObject blockGreen;
+    public GameObject blockYellow;
+    public GameObject blockBlue;
 
     // Start is called before the first frame update
     void Start()
     {
-        for (int i = 0; i < hotbar.transform.childCount; i++)
+        symbols.Add(blockBlue);
+        symbols.Add(blockYellow);
+        symbols.Add(blockRed);
+        symbols.Add(blockGreen);
+
+        while (symbols.Count != 10)
         {
             int index = Random.Range(0, prefabs.Length);
-            GameObject go = Instantiate(prefabs[index], hotbar.transform.GetChild(i));
+            symbols.Add(prefabs[index]);
+        }
+
+        symbols = Shuffle<GameObject>(symbols);
+
+        for (int i = 0; i < hotbar.transform.childCount; i++)
+        {
+            GameObject go = Instantiate(symbols[i], hotbar.transform.GetChild(i));
             go.transform.position = hotbar.transform.GetChild(i).position;
             go.GetComponent<DragAndDrop>().canvas = FindObjectOfType<Canvas>();
-            symbols.Add(go);
         }
-        Debug.Log(symbols);
-        symbols = Shuffle<GameObject>(symbols);
-        Debug.Log(symbols);
     }
 
     // Update is called once per frame

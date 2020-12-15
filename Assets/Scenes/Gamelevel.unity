@@ -3357,6 +3357,14 @@ MonoBehaviour:
   - {fileID: 9207033878942448356, guid: 263816f16b28aa842a2aef30d4e8b71d, type: 3}
   - {fileID: 8936760019158293898, guid: cf23f9f00ff553e44a39b39bc0e65226, type: 3}
   - {fileID: 2707715910829810853, guid: 7ae0b1714c949904ea2361e35e874014, type: 3}
+  blockRed: {fileID: 2213053225320828116, guid: 5fb1548cbd2806544918cb9bcecd53bf,
+    type: 3}
+  blockGreen: {fileID: 8212547403264503774, guid: 3fdec5b11bc839d4fb03e564636f17ee,
+    type: 3}
+  blockYellow: {fileID: 8936760019158293898, guid: cf23f9f00ff553e44a39b39bc0e65226,
+    type: 3}
+  blockBlue: {fileID: 3559963941940185364, guid: 7f6ef1a2166f21f4f92a83c4c4835568,
+    type: 3}
 --- !u!1 &1851961312
 GameObject:
   m_ObjectHideFlags: 0
