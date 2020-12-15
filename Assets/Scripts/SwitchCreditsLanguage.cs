@@ -12,6 +12,7 @@ public class SwitchCreditsLanguage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        kylttiFI.SetActive(true);
         kylttiEN.SetActive(false);
     }
 
@@ -26,35 +27,15 @@ public class SwitchCreditsLanguage : MonoBehaviour
         isTextFinnish = !isTextFinnish;
         if(isTextFinnish)
         {
-            TMP_Text[] compsFI = kylttiFI.GetComponentsInChildren<TMP_Text>();
-            foreach (TMP_Text t in compsFI)
-            {
-                t.enabled = false;
-            }
-            kylttiFI.SetActive(false);
-
-            TMP_Text[] compsEN = kylttiEN.GetComponentsInChildren<TMP_Text>();
-            foreach (TMP_Text t in compsEN)
-            {
-                t.enabled = true;
-            }
-            kylttiEN.SetActive(true);
+            // Show Finnish text
+            kylttiFI.SetActive(true);
+            kylttiEN.SetActive(false);
         }
         else
         {
-            TMP_Text[] compsFI = kylttiFI.GetComponentsInChildren<TMP_Text>();
-            foreach (TMP_Text t in compsFI)
-            {
-                t.enabled = true;
-            }
-            kylttiFI.SetActive(true);
-
-            TMP_Text[] compsEN = kylttiEN.GetComponentsInChildren<TMP_Text>();
-            foreach (TMP_Text t in compsEN)
-            {
-                t.enabled = false;
-            }
-            kylttiEN.SetActive(false);
+            // Show English text
+            kylttiFI.SetActive(false);
+            kylttiEN.SetActive(true);
         }
     }
 }
