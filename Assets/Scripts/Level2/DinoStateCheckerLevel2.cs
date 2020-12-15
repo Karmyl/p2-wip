@@ -73,6 +73,7 @@ public class DinoStateCheckerLevel2 : MonoBehaviour
 
             // Sound effect here
             audiomanager.PlaySound("dino_osuu_palikkaan");
+            audiomanager.PlaySound("coin collected");
         }
     }
 }

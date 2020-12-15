@@ -62,7 +62,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Gamelevel3
     clip: {fileID: 8300000, guid: 6694243208319aa4d8d3d1f56db52f61, type: 3}
-    volume: 0.204
+    volume: 0.184
     loop: 1
     source: {fileID: 0}
   - name: GameOver
@@ -73,7 +73,7 @@ MonoBehaviour:
   sounds:
   - name: buttonSoundFX
     clip: {fileID: 8300000, guid: 2846aac76f173184eaf05e62318c86d1, type: 3}
-    volume: 0.402
+    volume: 0.242
     pitch: 0.1
     loop: 0
     source: {fileID: 0}
