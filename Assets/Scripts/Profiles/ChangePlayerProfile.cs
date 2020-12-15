@@ -46,7 +46,7 @@ public class ChangePlayerProfile : MonoBehaviour
         }
     }
 
-    public void SelectedIndexChanged(int index)
+    public void UpdateSelectedPlayerIndex(int index)
     {
         selectedPlayerIndex = index;
     }
