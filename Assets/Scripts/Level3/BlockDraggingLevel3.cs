@@ -62,7 +62,7 @@ public class BlockDraggingLevel3 : MonoBehaviour
                     this.GetComponent<MeshCollider>().enabled = true;
                     isDragged = false;
                     isAttached = false;
-                    audiomanager.PlaySound("Lane missed");
+                    audiomanager.PlaySound("lane missed");
                 }
                 else
                 {
@@ -71,7 +71,7 @@ public class BlockDraggingLevel3 : MonoBehaviour
                     targetDino.GetComponent<PathFollowerLevel3>().SetSlowedState(true, 2.0f);
                     Score.AddScore(1);
                     StartCoroutine(Testi());
-                    audiomanager.PlaySound("dino_osuu_palikkaan");
+                    audiomanager.PlaySound("coin collected");
                 }
             }
         }
