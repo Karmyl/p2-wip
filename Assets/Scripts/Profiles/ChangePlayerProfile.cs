@@ -7,41 +7,72 @@ using UnityEngine.UI;
 public class ChangePlayerProfile : MonoBehaviour
 {
     public Dropdown dropdown;
+    public Sprite[] sprites;
     private List<Player> players = null;
     private int selectedPlayerIndex = -1;
 
     // Start is called before the first frame update
     void Start()
     {
+        //players = DatabaseLoader.GetAllPlayers();
+        //List<string> names = new List<string>();
+        //foreach (Player p in players)
+        //{
+        //    names.Add(p.PlayerName);
+        //}
+        //dropdown.AddOptions(names);
+
+        //// Select first item in list if names-array contains at least
+        //// one item
+        //if (names.Count > 0)
+        //{
+        //    // Find current player and set that as selected
+        //    Player currentPlayer = DatabaseLoader.GetCurrentPlayer();
+        //    int currentPlayerId = currentPlayer.Id;
+        //    bool found = false;
+        //    for (int i = 0; i < players.Count && !found; i++)
+        //    {
+        //        if(players[i].Id == currentPlayerId)
+        //        {
+        //            found = true;
+        //            dropdown.value = i;
+        //            selectedPlayerIndex = i;
+        //        }
+        //    }
+        //}
+
+        dropdown.ClearOptions();
         players = DatabaseLoader.GetAllPlayers();
-        List<string> names = new List<string>();
-        foreach (Player p in players)
+        List<Dropdown.OptionData> items = new List<Dropdown.OptionData>();        
+        foreach(Player p in players)
         {
-            names.Add(p.PlayerName);
+            int avatarId = p.AvatarId;
+            Dropdown.OptionData newOption = new Dropdown.OptionData(p.PlayerName, sprites[avatarId]);
+            items.Add(newOption);
         }
-        dropdown.AddOptions(names);
+        dropdown.AddOptions(items);
 
         // Select first item in list if names-array contains at least
         // one item
-        if (names.Count > 0)
-        {
-            // Find current player and set that as selected
-            Player currentPlayer = DatabaseLoader.GetCurrentPlayer();
-            int currentPlayerId = currentPlayer.Id;
-            bool found = false;
-            for (int i = 0; i < players.Count && !found; i++)
-            {
-                if(players[i].Id == currentPlayerId)
-                {
-                    found = true;
-                    dropdown.value = i;
-                    selectedPlayerIndex = i;
-                }
-            }
-        }
+        //if (names.Count > 0)
+        //{
+        //    // Find current player and set that as selected
+        //    Player currentPlayer = DatabaseLoader.GetCurrentPlayer();
+        //    int currentPlayerId = currentPlayer.Id;
+        //    bool found = false;
+        //    for (int i = 0; i < players.Count && !found; i++)
+        //    {
+        //        if (players[i].Id == currentPlayerId)
+        //        {
+        //            found = true;
+        //            dropdown.value = i;
+        //            selectedPlayerIndex = i;
+        //        }
+        //    }
+        //}
     }
 
-    public void SelectedIndexChanged(int index)
+        public void SelectedIndexChanged(int index)
     {
         selectedPlayerIndex = index;
     }

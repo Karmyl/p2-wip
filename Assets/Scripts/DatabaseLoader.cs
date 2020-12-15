@@ -20,45 +20,7 @@ public class DatabaseLoader : MonoBehaviour
         // Check if database exists
         if (System.IO.File.Exists(GetDatabaseURI()))
         {
-            // Load all players from database
-            string[] lines = File.ReadAllLines(GetDatabaseURI());
-            foreach (string s in lines)
-            {
-                string[] tokens = s.Split('#');
-                int id = Int32.Parse(tokens[0]);
-                string name = tokens[1];
-                int avatarId = Int32.Parse(tokens[2]);
-                int score = Int32.Parse(tokens[3]);
-                int skipTutorialLevel1 = Int32.Parse(tokens[4]);
-                int skipTutorialLevel2 = Int32.Parse(tokens[5]);
-                int skipTutorialLevel3 = Int32.Parse(tokens[6]);
-                Player newPlayer = new Player(id, name, score, avatarId);
-                newPlayer.SkipTutorialLevel1 = skipTutorialLevel1;
-                newPlayer.SkipTutorialLevel2 = skipTutorialLevel2;
-                newPlayer.SkipTutorialLevel3 = skipTutorialLevel3;
-                players.Add(newPlayer);
-            }
-
-            // Check if last user id exists
-            int lastId = PlayerPrefs.GetInt("lastId");
-            if(lastId != 0)
-            {
-                // Find and set active last player id
-                bool found = false;
-                for(int i = 0; i < players.Count && !found; i++)
-                {
-                    if(players[i].Id == lastId)
-                    {
-                        found = true;
-                        SetCurrentPlayer(players[i]);
-                    }
-                }
-            }
-            else
-            {
-                // No previous lastId set, use first one in list
-                SetCurrentPlayer(players[0]);
-            }
+            LoadPlayersFromFile();
         }
         else
         {
@@ -85,6 +47,14 @@ public class DatabaseLoader : MonoBehaviour
 
     public static List<Player> GetAllPlayers()
     {
+        // Late database loading if editor is started from anywhere else than
+        // from MainMenu-scene
+        if(players == null)
+        {
+            players = new List<Player>();
+            LoadPlayersFromFile();
+        }
+
         return players;
     }
 
@@ -177,6 +147,49 @@ public class DatabaseLoader : MonoBehaviour
         }
         sw.Close();
         fs.Close();
+    }
+
+    private static void LoadPlayersFromFile()
+    {
+        // Load all players from database
+        string[] lines = File.ReadAllLines(GetDatabaseURI());
+        foreach (string s in lines)
+        {
+            string[] tokens = s.Split('#');
+            int id = Int32.Parse(tokens[0]);
+            string name = tokens[1];
+            int avatarId = Int32.Parse(tokens[2]);
+            int score = Int32.Parse(tokens[3]);
+            int skipTutorialLevel1 = Int32.Parse(tokens[4]);
+            int skipTutorialLevel2 = Int32.Parse(tokens[5]);
+            int skipTutorialLevel3 = Int32.Parse(tokens[6]);
+            Player newPlayer = new Player(id, name, score, avatarId);
+            newPlayer.SkipTutorialLevel1 = skipTutorialLevel1;
+            newPlayer.SkipTutorialLevel2 = skipTutorialLevel2;
+            newPlayer.SkipTutorialLevel3 = skipTutorialLevel3;
+            players.Add(newPlayer);
+        }
+
+        // Check if last user id exists
+        int lastId = PlayerPrefs.GetInt("lastId");
+        if (lastId != 0)
+        {
+            // Find and set active last player id
+            bool found = false;
+            for (int i = 0; i < players.Count && !found; i++)
+            {
+                if (players[i].Id == lastId)
+                {
+                    found = true;
+                    SetCurrentPlayer(players[i]);
+                }
+            }
+        }
+        else
+        {
+            // No previous lastId set, use first one in list
+            SetCurrentPlayer(players[0]);
+        }
     }
 
     //    // Start is called before the first frame update
