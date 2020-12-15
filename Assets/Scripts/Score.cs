@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Score : MonoBehaviour
 {
-    private static Text text;
+    private static TMP_Text text;
     public static int score;
     public static int numChickensInHome;
     public static int numChickensInGame;
@@ -39,7 +40,7 @@ public class Score : MonoBehaviour
         GameObject go = GameObject.Find("ScoreText");
         if (go)
         {
-          Score.text = go.GetComponent<Text>();
+          Score.text = go.GetComponent<TMP_Text>();
           Score.text.text = Score.score.ToString();
         }
     }
@@ -51,7 +52,7 @@ public class Score : MonoBehaviour
         GameObject go = GameObject.Find("ScoreText");
         if (go)
         {
-            Score.text = go.GetComponent<Text>();
+            Score.text = go.GetComponent<TMP_Text>();
             Score.text.text = Score.score.ToString();
         }
     }
@@ -62,7 +63,7 @@ public class Score : MonoBehaviour
         GameObject go = GameObject.Find("ScoreText");
         if (go)
         {
-            Score.text = go.GetComponent<Text>();
+            Score.text = go.GetComponent<TMP_Text>();
             Score.text.text = Score.score.ToString();
         }
     }
