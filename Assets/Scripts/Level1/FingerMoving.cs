@@ -111,7 +111,7 @@ public class FingerMoving : MonoBehaviour
 
             //Fades in and removes at end
             StartCoroutine(DoFadeIn(GetComponent<SpriteRenderer>()));
-            //Invoke("RemoveSprite", 3);
+            Invoke("RemoveSprite", 3);
 
 
             // Keep a note of the time the movement started.
@@ -152,8 +152,8 @@ public class FingerMoving : MonoBehaviour
 
     }
 
-    //public void RemoveSprite()
-    //{
-    //    FingerIcon.GetComponent<Renderer>().enabled = false;
-    //}
+    public void RemoveSprite()
+    {
+        FingerIcon.GetComponent<Renderer>().enabled = false;
+    }
 }
