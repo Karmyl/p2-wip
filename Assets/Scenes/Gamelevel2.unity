@@ -3273,8 +3273,8 @@ MonoBehaviour:
   rotationSpeed: 0.05
   slowedDurationInSeconds: 1
   slowingCoefficient: 0.5
---- !u!65 &1088555289
-BoxCollider:
+--- !u!135 &1088555289
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -3284,8 +3284,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.6424623, y: 3.3064747, z: 5.71217}
-  m_Center: {x: 0.43961978, y: 3.8751159, z: 0.21336079}
+  m_Radius: 2.4
+  m_Center: {x: 0, y: 3.58, z: -2.76}
 --- !u!54 &1088555290
 Rigidbody:
   m_ObjectHideFlags: 0
