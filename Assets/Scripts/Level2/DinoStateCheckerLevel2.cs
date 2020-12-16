@@ -69,12 +69,12 @@ public class DinoStateCheckerLevel2 : MonoBehaviour
                 {                  
                     Score.AddScore(1);
                     script.SetSlowedState(true, 2.0f);
+
+                    // Sound effect here
+                    audiomanager.PlaySound("dino_osuu_palikkaan");
+                    audiomanager.PlaySound("coin collected");
                 }
             }
-
-            // Sound effect here
-            audiomanager.PlaySound("dino_osuu_palikkaan");
-            audiomanager.PlaySound("coin collected");
         }
     }
 }

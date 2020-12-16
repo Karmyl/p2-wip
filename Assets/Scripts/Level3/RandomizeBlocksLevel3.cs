@@ -7,6 +7,7 @@ public class RandomizeBlocksLevel3 : MonoBehaviour
     public GameObject hotbar;
     public List<GameObject> symbols = new List<GameObject>();
     public GameObject[] prefabs;
+    public float secondsUntilBlockIsRemoved = 4.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -76,11 +77,13 @@ public class RandomizeBlocksLevel3 : MonoBehaviour
                     this.transform.GetChild(0).gameObject.transform.localScale = new Vector3(23, 23, 23);
                 }
             }
-            yield return new WaitForSeconds(1.5f);
+
+            float v = secondsUntilBlockIsRemoved / 3.0f;
+            yield return new WaitForSeconds(v);
             this.transform.GetChild(0).gameObject.transform.localScale *= 0.5f;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(v);
             this.transform.GetChild(0).gameObject.transform.localScale *= 0.5f;
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(v);
         }
     }
 

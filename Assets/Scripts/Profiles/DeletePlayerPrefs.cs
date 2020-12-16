@@ -7,7 +7,7 @@ public class DeletePlayerPrefs : MonoBehaviour
 {
     public void DeleteOwnPlayerPrefs()
     {
-        PlayerPrefs.DeleteAll();
+        //PlayerPrefs.DeleteAll();
     }
     // Start is called before the first frame update
     void Start()
