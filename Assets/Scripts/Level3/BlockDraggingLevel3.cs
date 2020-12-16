@@ -68,6 +68,8 @@ public class BlockDraggingLevel3 : MonoBehaviour
                 {
                     // Slow down dino
                     // Triggers every frame?
+                    isAttached = false;
+                    isDragged = false;
                     targetDino.GetComponent<PathFollowerLevel3>().SetSlowedState(true, 2.0f);
                     Score.AddScore(1);
                     StartCoroutine(Testi());
