@@ -79,7 +79,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: chickens
     clip: {fileID: 8300000, guid: 6db06806a0f13d341b0bb1e0779f2253, type: 3}
-    volume: 0.605
+    volume: 0.505
     pitch: 0.1
     loop: 1
     source: {fileID: 0}

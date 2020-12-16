@@ -57,6 +57,7 @@ public class AudioManager : MonoBehaviour
             s.source = gameObject.AddComponent<AudioSource>();
             s.source.clip = s.clip;
             s.source.name = s.name;
+            s.source.loop = s.loop;
             s.source.volume = s.volume * fxVolumeValue;
         }
 
@@ -138,10 +139,7 @@ public class AudioManager : MonoBehaviour
 
             ChangeBackgroundMusic(sceneName);
         } 
-
-
     }
-
 
     public void ChangeBackgroundMusic(string music)
     {
@@ -155,13 +153,6 @@ public class AudioManager : MonoBehaviour
             }
         }
 
-        if (bgMusic == null)
-        {
-            Debug.Log("no music");
-        } else
-        {
-            Debug.Log(bgMusic.name);
-        }
         if (bgMusic != null)
         {
             if (bgMusic.name == music)//Continue without changing music
@@ -175,11 +166,6 @@ public class AudioManager : MonoBehaviour
                 if (bgMusic.name == "GameOver")
                 {   
                     bgMusic.loop = false;
-                }
-
-                if (backgroundMusic.name == "GameOver")
-                {
-                    backgroundMusic.loop = false;
                 }
             }
         } else
