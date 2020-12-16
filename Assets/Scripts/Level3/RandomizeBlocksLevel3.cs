@@ -52,10 +52,9 @@ public class RandomizeBlocksLevel3 : MonoBehaviour
 
     IEnumerator TimerDelay()  //  <-  its a standalone method
     {
-       
+
         while (true)
         {
-
             // Rebuild list of available blocks
             symbols.Clear();
             for (int i = 0; i < hotbar.transform.childCount; i++)
@@ -65,21 +64,22 @@ public class RandomizeBlocksLevel3 : MonoBehaviour
                     symbols.Add(hotbar.transform.GetChild(i).GetChild(0).gameObject);
                 }
             }
+
+            symbols = Shuffle<GameObject>(symbols);
+
             if (symbols.Count > 0)
             {
                 if (this.transform.childCount > 0)
                 {
                     Destroy(this.transform.GetChild(0).gameObject);
                     BlockInstantiate();
-                    this.gameObject.transform.localScale = new Vector3(23, 23, 23);
+                    this.transform.GetChild(0).gameObject.transform.localScale = new Vector3(23, 23, 23);
                 }
             }
-            //yield return new WaitForSeconds(3f);
-            this.gameObject.transform.localScale -= new Vector3(3f, 3f, 0f);
             yield return new WaitForSeconds(1.5f);
-            this.gameObject.transform.localScale -= new Vector3(6f, 6f, 0f);
+            this.transform.GetChild(0).gameObject.transform.localScale *= 0.5f;
             yield return new WaitForSeconds(1.5f);
-            this.gameObject.transform.localScale -= new Vector3(9f, 9f, 0f);
+            this.transform.GetChild(0).gameObject.transform.localScale *= 0.5f;
             yield return new WaitForSeconds(1.5f);
         }
     }
