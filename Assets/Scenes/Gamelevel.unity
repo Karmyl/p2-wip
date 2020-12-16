@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484b099c2ad65d14786daa9dc51bcb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 90
+  speed: 45
   speedMultiplier: 0.6
   slowDownDuration: 1
 --- !u!54 &842809386
@@ -1941,7 +1941,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608, y: -10}
+  m_AnchoredPosition: {x: -500, y: -10}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1162460269
@@ -1994,7 +1994,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chasingDinosaur: {fileID: 1851961312}
-  speed: 72
+  speed: 45
 --- !u!54 &1162460272
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2190,7 +2190,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608.0011, y: -7}
+  m_AnchoredPosition: {x: -500, y: -7}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1195768468
@@ -2206,7 +2206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chasingDinosaur: {fileID: 0}
-  speed: 92
+  speed: 44
 --- !u!54 &1195768469
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2944,7 +2944,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484b099c2ad65d14786daa9dc51bcb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 85
+  speed: 47
   speedMultiplier: 0.6
   slowDownDuration: 1
 --- !u!54 &1405187209
@@ -3669,7 +3669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484b099c2ad65d14786daa9dc51bcb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 78
+  speed: 52
   speedMultiplier: 0.6
   slowDownDuration: 1
 --- !u!54 &1851961317
@@ -3943,7 +3943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 484b099c2ad65d14786daa9dc51bcb02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 50
   speedMultiplier: 0.6
   slowDownDuration: 1
 --- !u!54 &1976719656
@@ -4061,7 +4061,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608.0011, y: -2}
+  m_AnchoredPosition: {x: -500, y: -2}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2006103506
@@ -4114,7 +4114,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chasingDinosaur: {fileID: 0}
-  speed: 82
+  speed: 39
 --- !u!54 &2006103509
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4230,7 +4230,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -608, y: -10.046997}
+  m_AnchoredPosition: {x: -500, y: -10.046997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065936736
@@ -4283,7 +4283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chasingDinosaur: {fileID: 0}
-  speed: 77
+  speed: 41
 --- !u!54 &2065936739
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -62,10 +62,11 @@ public class DinoStateCheckerLevel2 : MonoBehaviour
             // Dinosaur slowing
             if (collision.collider.gameObject.GetComponent<BlockDraggingLevel2>().GetIsScaled())
             {
+                collision.collider.attachedRigidbody.AddExplosionForce(1500.0f, this.transform.position, 10.0f);
                 // Check if dino has pathfollowing component
                 PathFollowerLevel2 script = this.GetComponent<PathFollowerLevel2>();
                 if(script != null)
-                {
+                {                  
                     Score.AddScore(1);
                     script.SetSlowedState(true, 2.0f);
                 }
