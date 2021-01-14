@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class AddProfile : MonoBehaviour
 {
     private string playerName = null;
