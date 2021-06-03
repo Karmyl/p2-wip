@@ -8,10 +8,11 @@ public class AudioManagerCheck : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (FindObjectOfType<AudioManager>())
+        if (FindObjectOfType<AudioManager>()) 
         {
             return;
-        } else
+        }
+        else
         {
             Instantiate(audiomanager, transform.position, transform.rotation);
         }

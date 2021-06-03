@@ -109,7 +109,7 @@ public class AudioManager : MonoBehaviour
         //check if first play
         firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
         
-        if (firstPlayValue == 0)//set values
+        if (firstPlayValue == 0)//set values  
         {
 
             musicVolumeValue = 1.0f;
@@ -133,6 +133,7 @@ public class AudioManager : MonoBehaviour
                 s.source.volume = s.volume;
             }
 
+            //Save sound settings to the playerPrefs
             PlayerPrefs.SetFloat(BackgroundPref, musicVolumeValue);
             PlayerPrefs.SetFloat(FxVolumePref, fxVolumeValue);
             PlayerPrefs.SetInt(FirstPlay, -1);       
@@ -155,10 +156,11 @@ public class AudioManager : MonoBehaviour
 
         if (bgMusic != null)
         {
-            if (bgMusic.name == music)//Continue without changing music
+            if (bgMusic.name == music)//Continue without changing the music
             {
                 return;
-            } else //stop current music and start new bgmusic 
+            } 
+            else //stop the current music and start a new background music 
             {
                 StopMusic(bgMusic.name);
                 PlayMusic(music);
@@ -168,7 +170,8 @@ public class AudioManager : MonoBehaviour
                     bgMusic.loop = false;
                 }
             }
-        } else
+        } 
+        else
         {
             PlayMusic(music);
             Debug.Log("first music playing");

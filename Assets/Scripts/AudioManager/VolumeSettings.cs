@@ -27,7 +27,7 @@ public class VolumeSettings : MonoBehaviour
 
     private void Awake()
     {
-        //Get playerprefs to see if players first play
+        //Get playerprefs to see if player's first play
         music = FindObjectOfType<AudioManager>().GetComponent<AudioManager>();
 
         firstPlayValue = PlayerPrefs.GetInt(FirstPlay);
@@ -45,7 +45,7 @@ public class VolumeSettings : MonoBehaviour
 
             SaveSoundSettings();
         }
-        else //get values from playerprefs and set slider
+        else //get values from playerprefs and set sliders
         {
             musicVolumeValue = PlayerPrefs.GetFloat(BackgroundPref);
             musicVolumeSlider.value = musicVolumeValue;
@@ -56,14 +56,14 @@ public class VolumeSettings : MonoBehaviour
         }
     }
 
-    //check when slider is released
+    //check when the slider is released
     public void SliderIsReleased()
     {
         music.PlaySound("buttonSoundFX");
     }
 
 
-    //Listen when player drops slider handle 
+    //Listen when player drops the slider handle 
     public void DragHasEnded()
     {
         music.PlaySound("buttonSoundFX");
